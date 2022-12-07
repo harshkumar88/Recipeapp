@@ -11,14 +11,17 @@ const Register = () => {
         confirmpass:"",
         phone:""
     })
+    const history=useHistory();
 
     const handleSubmit=(e)=>{
          e.preventDefault();
         setTimeout(()=>{
           setData({username:"",email:"",password:"",confirmpass:"",phone:""})
+          history.push("/Login")
         },1000)
         
-        return <Redirect to="/Login"/>
+       alert("User Register Successfully")
+        
     }
 
     const changevalue=(e)=>{
@@ -35,28 +38,28 @@ const Register = () => {
           
         <h2>Register</h2>
 </div>
-        <form className="form mt-3 w-75 mx-auto" onSubmit={handleSubmit}>
+        <form className="form mt-3 w-75 mx-auto" onSubmit={handleSubmit} >
         <div className="form-group mb-3">
             <label>Username</label>
-            <input type="text" placeholder="Type your username" className="form-control input no-outline" name="username" onChange={changevalue} value={formData.username}/>
+            <input type="text" placeholder="Type your username" className="form-control input no-outline" name="username" onChange={changevalue} value={formData.username} required/>
         </div>
         <div className="form-group mb-3">
             <label>Email</label>
-            <input type="email" placeholder="Type your username" className="form-control input no-outline" name="email" onChange={changevalue} value={formData.email}/>
+            <input type="email" placeholder="Type your username" className="form-control input no-outline" name="email" onChange={changevalue} value={formData.email} required/>
         </div>
         <div className="form-group mb-3">
             <label>Password</label>
-            <input type="password" placeholder="Type your password" className="form-control input no-outline" name="password" onChange={changevalue} value={formData.password}/>
+            <input type="password" placeholder="Type your password" className="form-control input no-outline" name="password" onChange={changevalue} value={formData.password} required/>
         </div>
 
         <div className="form-group mb-3">
         <label>Confirm Password</label>
-        <input type="password" placeholder="Type your password" className="form-control input no-outline" name="confirmpass" onChange={changevalue} value={formData.confirmpass}/>
+        <input type="password" placeholder="Type your password" className="form-control input no-outline" name="confirmpass" onChange={changevalue} value={formData.confirmpass} required/>
     </div>
 
     <div className="form-group mb-3">
     <label>Phone No.</label>
-    <input type="text" placeholder="Type your contact no." className="form-control input no-outline" name="phone" onChange={changevalue} value={formData.phone}/>
+    <input type="text" placeholder="Type your contact no." className="form-control input no-outline" name="phone" onChange={changevalue} value={formData.phone} required/>
 </div>
 <div className="text-center">
    <button className="btn btn-group text-light"  type='submit' >Submit</button>
