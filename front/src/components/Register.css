@@ -1,0 +1,22 @@
+.input{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #0000009d;
+    color:white;
+   
+}
+
+.bgset{
+    background-image: linear-gradient(180deg,#fc5c7d, #6a82fb);
+}
+.borderRadius{
+    border-radius: 20px;
+}
+
+
+.no-outline:focus {
+    background-color: #01020341;
+    outline: none;
+    color:rgba(255, 255, 255, 0.753);
+   
+  }
