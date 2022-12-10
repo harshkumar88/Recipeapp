@@ -41,7 +41,8 @@ font-size: 4vw
     }
     .button1:hover{
       background-color:#FFD700;
-    border:0px
+    /* border:0px */
+    
     }
     .mybutton{
         width:150px;
@@ -55,5 +56,6 @@ font-size: 4vw
     
     .mybutton:hover{
         background-color:#FFD700;
-        border:0px
+        border:0.5px solid black;
+        /* border:0px */
     }
