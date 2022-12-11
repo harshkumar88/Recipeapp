@@ -31,12 +31,12 @@ const Register = () => {
     }
 
     return (
-        <div className="container-fluid vh-100 w-100 d-flex justify-content-center align-items-center bgset">
-             
+        <div className="container-fluid vh-100 w-100  justify-content-center align-items-center bgset">
+             <h2 style={{textAlign:"center"}}>Happy Cooking Season</h2>
         <div className="container  w-50 h-75 borderRadius text-black ">
          <div className="mx-5 text-center">
           
-        <h2>Register</h2>
+        
 </div>
         <form className="form mt-3 w-75 mx-auto" onSubmit={handleSubmit} >
         <div className="form-group mb-3">
