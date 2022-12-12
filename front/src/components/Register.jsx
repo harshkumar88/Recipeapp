@@ -12,16 +12,32 @@ const Register = () => {
         phone:""
     })
     const history=useHistory();
-
-    const handleSubmit=(e)=>{
+ 
+    const handleSubmit=async(e)=>{
          e.preventDefault();
-        setTimeout(()=>{
-          setData({username:"",email:"",password:"",confirmpass:"",phone:""})
-          history.push("/Login")
-        },1000)
-        
-       alert("User Register Successfully")
-        
+         const {username,email,password,confirmpass,phone}=formData;
+         const res=await fetch("/registerData",{
+             method:"POST",
+             headers:{
+                 "Content-Type":"application/json"
+             },
+             body:JSON.stringify({
+                    formData
+                 })
+         })
+         const data=await res.json();
+         console.log(data)
+         if(data.status===422 || !data){
+             alert("Invalid Registration")
+         }
+         else{
+             alert("Successfull Registration")
+             setData({username:"",email:"",password:"",confirmpass:"",phone:""})
+             history.push("/Login")
+         }
+     
+    
+      return ;
     }
 
     const changevalue=(e)=>{
@@ -38,7 +54,7 @@ const Register = () => {
           
         
 </div>
-        <form className="form mt-3 w-75 mx-auto" onSubmit={handleSubmit} >
+        <form className="form mt-3 w-75 mx-auto" onSubmit={handleSubmit} method="POST" >
         <div className="form-group mb-3">
             <label className='dark'>Username</label>
             <input type="text" placeholder="Type your username" className="form-control input" name="username" onChange={changevalue} value={formData.username} required/>
@@ -62,7 +78,7 @@ const Register = () => {
     <input type="text" placeholder="Type your contact no." className="form-control input " name="phone" onChange={changevalue} value={formData.phone} required/>
 </div>
 <div className="text-center">
-   <button className="btn btn-group text-light"  type='submit' >Submit</button>
+   <button className="btn btn-group text-dark"  type='submit' >Submit</button>
 </div>
         </form>
          
