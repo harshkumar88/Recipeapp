@@ -50,7 +50,31 @@ router.post("/LoginData", async (req, res) => {
     const { username, email, password } = req.body;
 
     if (username !== "" && email !== "" && password !== "") {
-        return res.status(200).json("successfull")
+        try {
+            const userdata = await Register.find({})
+            const finduser = userdata.find((user) => {
+                return user.email === email
+            })
+            console.log(finduser)
+            if(finduser===undefined){
+                console.log("a");
+              return res.status(422).json({error:'UserNotFound'})
+            }
+            else if(finduser.password!==password){
+                
+             return res.status(422).json({error:"passwordincorrect"});
+            }
+            else{
+            return res.status(201).json({message:"Success"});
+            }
+           
+            
+            
+        } catch (error) {
+            return res.send("error")
+            
+        }
+        //return res.status(200).json("successfull")
     }
 
     else {

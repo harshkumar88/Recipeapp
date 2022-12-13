@@ -34,13 +34,16 @@ const Login = () => {
          })
          const data=await res.json();
          console.log(data)
-         if(data.status===422 || !data){
-             alert("Invalid Login")
+         if(data.error==="passwordincorrect"){
+             alert("Password Incorrect")
+         }
+         else if( data.error==="UserNotFound"){
+            alert("User Not Found");
          }
          else{
              alert("Successfull Login")
              setData({username:"",email:"",password:""})
-             history.push("/Login")
+             history.push("/")
          }
      
     

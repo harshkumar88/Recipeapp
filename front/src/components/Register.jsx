@@ -24,9 +24,9 @@ const Register = () => {
     const handleSubmit=async(e)=>{
          e.preventDefault();
          const {username,email,password,confirmpass}=formData;
-
+          
          if(password!==confirmpass){
-            alert("password must be same")
+            alert("password must be same" )
             return;
          }
          
@@ -44,7 +44,7 @@ const Register = () => {
          if(data.error==="emailrejected"){
              alert("Invalid Email")
          }
-         else if(data.status===422 || data.error==="passwordrejected"){
+         else if(data.error==="passwordrejected"){
             alert("Invalid Password")
         }
          else{
