@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import {useHistory } from 'react-router-dom'
+import {NavLink, useHistory } from 'react-router-dom'
 
 import './Register.css'
 const Register = () => {
@@ -81,6 +81,7 @@ const Register = () => {
                     <small id="PasswordHelp" className="form-text text-muted">Password is remain always safe.</small><br/>
                     <label className="form-label my-2">Confirm Password</label><input type="password"  name="confirmpass" value={formData.confirmpass} className="form-control " placeholder="Enter your password again" required onChange={change}/>
                     <small id="PasswordHelp" className="form-text text-muted">Password is remain always safe.</small><br/>
+                    <small id="PasswordHelp" className="form-text text-muted">Already have an account</small> <NavLink to='/Login' className='form-text text-danger'>Click here</NavLink><br/>
                     <div className="my-3 text-center"><button className="btn btn-danger form-control" type="submit">Register</button></div>
                 </form>
             </div>

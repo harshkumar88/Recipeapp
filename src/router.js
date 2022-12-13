@@ -55,7 +55,7 @@ router.post("/LoginData", async (req, res) => {
             const finduser = userdata.find((user) => {
                 return user.email === email
             })
-            console.log(finduser)
+            
             if(finduser===undefined){
                 console.log("a");
               return res.status(422).json({error:'UserNotFound'})
