@@ -30,3 +30,11 @@
     color:rgba(255, 255, 255, 0.753);
    
   } */
+
+  .background{
+    background-image: url("https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+    min-height:100vh ;
+  }
+  .border{
+    border-radius: 10px;
+  }

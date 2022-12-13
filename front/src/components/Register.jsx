@@ -1,38 +1,55 @@
-import React, { useState } from 'react'
-import { NavLink, Redirect,useHistory } from 'react-router-dom'
+import React, { useState,useEffect } from 'react'
+import {useHistory } from 'react-router-dom'
 
 import './Register.css'
 const Register = () => {
+    
+    const [w,inc]=useState("40%");
+
+    useEffect(() => {
+        if( window.innerWidth<900)
+       
+            inc("300px")
+
+      }, [])
 
     const [formData,setData]=useState({
         username:"",
         email:"",
         password:"",
-        confirmpass:"",
-        phone:""
+        confirmpass:""
     })
     const history=useHistory();
  
     const handleSubmit=async(e)=>{
          e.preventDefault();
-         const {username,email,password,confirmpass,phone}=formData;
+         const {username,email,password,confirmpass}=formData;
+
+         if(password!==confirmpass){
+            alert("password must be same")
+            return;
+         }
+         
          const res=await fetch("/registerData",{
              method:"POST",
              headers:{
                  "Content-Type":"application/json"
              },
              body:JSON.stringify({
-                    formData
-                 })
+                username,email,password,confirmpass
+            })
          })
          const data=await res.json();
-         console.log(data)
-         if(data.status===422 || !data){
-             alert("Invalid Registration")
+         
+         if(data.status===422 || data.error==="emailrejected"){
+             alert("Invalid Email")
          }
+         else if(data.status===422 || data.error==="passwordrejected"){
+            alert("Invalid Password")
+        }
          else{
              alert("Successfull Registration")
-             setData({username:"",email:"",password:"",confirmpass:"",phone:""})
+             setData({username:"",email:"",password:"",confirmpass:""})
              history.push("/Login")
          }
      
@@ -40,50 +57,31 @@ const Register = () => {
       return ;
     }
 
-    const changevalue=(e)=>{
+    const change=(e)=>{
             const name=e.target.name;
             const value=e.target.value;
             setData({...formData,[name]:value})
     }
 
     return (
-        <div className="container-fluid vh-100 w-100  justify-content-center align-items-center bgset">
-             <h2 style={{textAlign:"center"}}>Happy Cooking Season</h2>
-        <div className="container  w-50 h-75 borderRadius text-black ">
-         <div className="mx-5 text-center">
-          
-        
-</div>
-        <form className="form mt-3 w-75 mx-auto" onSubmit={handleSubmit} method="POST" >
-        <div className="form-group mb-3">
-            <label className='dark'>Username</label>
-            <input type="text" placeholder="Type your username" className="form-control input" name="username" onChange={changevalue} value={formData.username} required/>
-        </div>
-        <div className="form-group mb-3">
-            <label className='dark '>Email</label>
-            <input type="email" placeholder="Type your username" className="form-control input " name="email" onChange={changevalue} value={formData.email} required/>
-        </div>
-        <div className="form-group mb-3">
-            <label className='dark'>Password</label>
-            <input type="password" placeholder="Type your password" className="form-control input " name="password" onChange={changevalue} value={formData.password} required/>
-        </div>
+        <div className='background'>
+            <div className="container text-center" style={{flexGrow:"1"}}>
+                <h1>Register</h1>
+            </div>
 
-        <div className="form-group mb-3">
-        <label className='dark'>Confirm Password</label>
-        <input type="password" placeholder="Type your password" className="form-control input" name="confirmpass" onChange={changevalue} value={formData.confirmpass} required/>
-    </div>
-
-    <div className="form-group mb-3">
-    <label className='dark'>Phone No.</label>
-    <input type="text" placeholder="Type your contact no." className="form-control input " name="phone" onChange={changevalue} value={formData.phone} required/>
-</div>
-<div className="text-center">
-   <button className="btn btn-group text-dark"  type='submit' >Submit</button>
-</div>
-        </form>
-         
-        </div>
-
+            <div className="container  bg-light my-2 mx-auto border" style={{width:w,zIndex:3}}>
+                <form method="POST" className="form py-4" onSubmit={handleSubmit}>
+                    <label className="form-label m-1">Name</label><input type="text" className="form-control " name="username" value={formData.username} placeholder="Enter your name" required onChange={change}/>               
+                    <label className="form-label my-2">Email</label><input type="email"  name="email" value={formData.email} className="form-control " placeholder="Enter your email" required onChange={change} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"/>
+                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small><br/>
+                    <label className="form-label my-2">Password</label><input type="password"  name="password" value={formData.password} className="form-control " placeholder="Enter your password" required onChange={change}/>
+                    <small id="PasswordHelp" className="form-text text-muted">Password is remain always safe.</small><br/>
+                    <label className="form-label my-2">Confirm Password</label><input type="password"  name="confirmpass" value={formData.confirmpass} className="form-control " placeholder="Enter your password again" required onChange={change}/>
+                    <small id="PasswordHelp" className="form-text text-muted">Password is remain always safe.</small><br/>
+                    <div className="my-3 text-center"><button className="btn btn-danger form-control" type="submit">Register</button></div>
+                </form>
+            </div>
+           
         </div>
     )
 }
