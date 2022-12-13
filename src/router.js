@@ -21,7 +21,7 @@ router.post("/registerData", async (req, res) => {
 
             const userdata = await Register.find({})
             const finduser = userdata.find((user) => {
-                return user.email === req.body.email
+                return user.email === email
             })
 
             if(finduser){
