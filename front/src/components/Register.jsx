@@ -44,6 +44,9 @@ const Register = () => {
          if(data.error==="emailrejected"){
              alert("Invalid Email")
          }
+         else if(data.error==="UserExist"){
+             alert("User Already Exist")
+         }
          else if(data.error==="passwordrejected"){
             alert("Invalid Password")
         }
