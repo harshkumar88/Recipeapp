@@ -3,7 +3,6 @@ import UpperHalf from './UpperHalf'
 import Lowerhalf from './Lowerhalf'
 const Home = () => {
 
-
   return (
     <>
       <div className="bg-warning">

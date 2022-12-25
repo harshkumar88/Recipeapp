@@ -10,7 +10,7 @@ const InfoSection = () => {
     </div>
 
     <div className='container w-50' >
-        <img src='https://wallpaperaccess.com/full/3237643.jpg' style={{ borderRadius: "50%", width: "81%", height: "85%" }} />
+        <img src='https://wallpaperaccess.com/full/3237643.jpg' style={{ borderRadius: "50%", width: "80%", height: "80%" }} />
     </div>
 
 </div>
