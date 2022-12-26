@@ -32,14 +32,14 @@ const Ingredients = (props) => {
 
   return (
 
-    <div className='topDist'>
+    <div>
     <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="true"/>
-    <div className='container-fluid '>
+    <div className='container-fluid topDist'>
     
-      <div className='container flex-box w-75 bg-light '>
+      <div className='container-fluid flex-box  bg-light '>
 
-        <div><img src={data.image} style={{ width: "200px" }} /></div>
-        <div className='container w-50'>
+        <div><img src={data.image} className="img-fluid"/></div>
+        <div>
           <div>
             <h2>{data.label}</h2>
             <p>See full Recipe <a href={`${data.url}`}>{data.source}</a></p>
@@ -50,20 +50,24 @@ const Ingredients = (props) => {
       </div>
 
 
-      <div className='container flex-box w-100 bg-light mt-2'>
+      <div className='container-fluid row bg-light mt-2 w60'>
 
-      <div className='container w-50'>
-        <h3>Ingredients</h3>
+      <div className="col-lg-6 sm-12">
+        <h3>{ingredients.length} Ingredients</h3>
+        <hr />
         {ingredients.map((ele, id) => {
-          return <div key={id}><span>{ele}</span></div>
+          return <div key={id} className="my-2"><span>{ele}</span></div>
         })}
-        </div>
-          <div className='container w-25 '>
+        </div >
+          <div className="col-lg-6 sm-12">
             <h3>Nutrition</h3>
-            <div>
+            <hr />
+            <span className='bold'>{Math.round(data.calories)} </span><span>Calories</span>
+
+            <div className='my-2'>
               {
                  healthLabels.map((ele,id)=>{
-                 return (<span>{ele} |</span>)
+                 return (<span className=''>{ele} |</span>)
                  })
               }
             </div>
@@ -72,7 +76,7 @@ const Ingredients = (props) => {
               nutrientsKeys.map((ele,id)=>{
                 // console.log(nutrients[ele])
                   return (
-                    <div> <span>{nutrients[ele].label}</span>--<span>{Math.round(nutrients[ele].quantity)}</span> <span>{nutrients[ele].unit}</span></div>
+                    <div className='my-2'> <span className='ms-0'>{nutrients[ele].label}</span>--<span className='margin-right'>{Math.round(nutrients[ele].quantity)}{nutrients[ele].unit}</span> </div>
                   )
               })
              }

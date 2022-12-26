@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { useState } from 'react'
 import { useHistory, NavLink, useLocation } from 'react-router-dom'
 import "./Recipe.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import SearchBar from './SearchBar';
 
 const RecipePage = () => {
@@ -69,6 +69,7 @@ const RecipePage = () => {
                                                             aboutProps: {
                                                                 ingredients: { ...ele.ingredientLines },
                                                                 nutrients: { ...ele.totalNutrients },
+                                                                calories:ele.calories,
                                                                 label: ele.label,
                                                                 image: ele.image,
                                                                 source: ele.source,

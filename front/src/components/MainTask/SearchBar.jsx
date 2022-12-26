@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Recipe.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
@@ -19,7 +19,7 @@ const SearchBar = ({dishname,setname,fetchData,check}) => {
                     state: {  // location state
                       dish:dishname
                     },
-                  }):fetchData();e.preventDefault()}} className="form-control btn-outline-dark Search "><FontAwesomeIcon icon={faSearch} /></button></div>
+                  }):fetchData();e.preventDefault()}} className="form-control btn-outline-dark Search ">Search</button></div>
                 </form>
 
             </div>
