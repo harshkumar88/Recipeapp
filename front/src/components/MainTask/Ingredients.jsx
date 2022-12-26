@@ -2,6 +2,7 @@ import { set } from 'mongoose';
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import "./Ingredients.css"
+import SearchBar from './SearchBar';
 
 const Ingredients = (props) => {
   const [data, setdata] = useState({});
@@ -9,6 +10,9 @@ const Ingredients = (props) => {
   const [nutrients, setnutrients] = useState({});
   const [nutrientsKeys, setKeys] = useState([]);
   const [healthLabels,setLabels]=useState([]);
+  const [dishname, setname] = useState("");
+  const [fetchData,setFunc]=useState();
+
 
   useEffect(() => {
     const data = props.location.aboutProps;
@@ -20,13 +24,19 @@ const Ingredients = (props) => {
     const nutrients = data.nutrients;
     setnutrients(nutrients);
     // console.log(Object.values(data.nutrients)
-    setLabels(Object.values(data.healthLabels).slice(0,5))
+    setLabels(Object.values(data.healthLabels).slice(0,5));
+    setname(data.dishname);
+    setFunc(data.fetchData)
+    // console.log(data.fetchData)
   }, [])
 
   return (
-    <div className='container-fluid'>
 
-      <div className='container flex-box w-75 bg-light'>
+    <div className='topDist'>
+    <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="true"/>
+    <div className='container-fluid '>
+    
+      <div className='container flex-box w-75 bg-light '>
 
         <div><img src={data.image} style={{ width: "200px" }} /></div>
         <div className='container w-50'>
@@ -74,7 +84,7 @@ const Ingredients = (props) => {
       
 
         </div>
-
+</div>
 
         )
 }

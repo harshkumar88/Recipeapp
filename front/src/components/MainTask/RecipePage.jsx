@@ -1,31 +1,36 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
-import { useHistory, NavLink } from 'react-router-dom'
+import { useHistory, NavLink, useLocation } from 'react-router-dom'
 import "./Recipe.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import SearchBar from './SearchBar';
 
 const RecipePage = () => {
-
+    const location = useLocation();
     const [dishname, setname] = useState("");
     const [recipeCard, setInfo] = useState([]);
     const [shown, set] = useState(false);
 
-    
-
     useEffect(() => {
+        if(location.state){
+            setname(location.state.dish);
+            
+            
+        }
         set(false)
     }, [])
-    const fetchData = async (e) => {
+    const fetchData = async () => {
         set(true);
-        e.preventDefault();
+        
+        // e.preventDefault();
         const res = await fetch(`https://api.edamam.com/search?q=${dishname}&app_id=b32ade57&app_key=
       4fc3de2f236498685967a41feda57d37`);
-
+        // console.log(res)
         const data = await res.json();
         const recipe = data.hits;
-        console.log(recipe)
+        // console.log(recipe)
 
         var recipeData = [];
 
@@ -41,19 +46,7 @@ const RecipePage = () => {
     return (
         <>
             <div className='container-fluid body' style={{ height: "100vh" }}>
-                <div className='w-100 fixednav text-center bg-light pb-2'>
-                    <div className='container'><h1>Recipe Page</h1></div>
-                    <div className='container'>
-                        <form action="#">
-                        
-                            <div className='container inline w-50'><input type="text" value={dishname} onChange={(e) => {
-                                setname(e.target.value)
-                            }}  className="form-control w-100 mx-auto"/></div>
-                            <div className='container inline small'><button type="submit" onClick={fetchData} className="form-control btn-outline-dark Search "><FontAwesomeIcon icon={faSearch} /></button></div>
-                        </form>
-
-                    </div>
-                </div>
+                <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="false"/>
 
                 {
                     shown == false ? <div className='container p-5 text-center topDist'>
@@ -81,7 +74,10 @@ const RecipePage = () => {
                                                                 source: ele.source,
                                                                 url:ele.url,
                                                                 healthLabels:{...ele.healthLabels},
-                                                                yeild:ele.yeild
+                                                                yeild:ele.yeild,
+                                                                dishname:dishname,
+                                                                setname:setname,
+                                                                fetchData:fetchData,
                                                             }
                                                         }
 
