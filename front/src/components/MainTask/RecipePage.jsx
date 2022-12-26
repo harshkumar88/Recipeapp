@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
 import { useHistory, NavLink } from 'react-router-dom'
-import "./Recipe.scss"
+import "./Recipe.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
@@ -30,8 +30,8 @@ const RecipePage = () => {
         var recipeData = [];
 
         for (let i of recipe) {
-            const { calories, label, url, ingredientLines, image, source, totalNutrients } = i.recipe;
-            const newdata = { calories, label, url, ingredientLines, image, source, totalNutrients };
+            const { calories, label, url, ingredientLines, image, source, totalNutrients,healthLabels,yeild } = i.recipe;
+            const newdata = { calories, label, url, ingredientLines, image, source, totalNutrients,healthLabels,yeild };
             recipeData.push(newdata)
         }
 
@@ -78,7 +78,10 @@ const RecipePage = () => {
                                                                 nutrients: { ...ele.totalNutrients },
                                                                 label: ele.label,
                                                                 image: ele.image,
-                                                                source: ele.source
+                                                                source: ele.source,
+                                                                url:ele.url,
+                                                                healthLabels:{...ele.healthLabels},
+                                                                yeild:ele.yeild
                                                             }
                                                         }
 
