@@ -1,0 +1,28 @@
+.card-design{
+     border-radius: 20px;
+}
+.fixednav{
+  position: fixed;
+  top:0;
+  width: 100%;
+  
+}
+
+.inline{
+  display: inline-block;
+}
+.small{
+  width: 100px;
+  border-radius: 20px;
+}
+
+.body{
+  margin: 0px;
+  padding: 0px
+}
+.topDist{
+   position: absolute;
+   top:100px;
+   z-index: -1;
+}
+
