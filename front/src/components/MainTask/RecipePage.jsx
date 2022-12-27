@@ -77,13 +77,52 @@ const RecipePage = () => {
                         <div className=' container-fluid mx-auto  topDist mb-5 ' style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
                             {recipeCard.map((ele, id) => {
                                 return (
-                                    <div key={id} className=" mt-3 mb-2 text-center card-design" style={{ border: "2px solid black", width: "250px" }}>
+                                    <div key={id} className=" mt-3 mb-2 text-center card-design bg-light onhover" style={{ width: "250px" }}>
                                         <div >
-                                            <img src={ele.image} alt="Food image" className='w-100 card-design' />
+                                            <img src={ele.image} alt="Food image" className='w-100 card-border' />
                                             <div>
-                                                <div style={{ fontFamily: "revert-layer", fontWeight: "bold", height: "50px", overflow: "hidden" }} className="container">{ele.label}</div>
-                                                <hr />
-                                                <div><span style={{ fontWeight: "bold" }}> Calories: </span>
+                                                <a  href={`${ele.url}`} target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFTC7YKP7zkKVpWrWY5Z3AU-TXuHumM3KeQ&usqp=CAU "  className='mini-logo'/></a>
+                                                <p className='para'> {ele.label}</p>
+                                                <div className='flexcalo'>
+                                                <div style={{width:"100px",}} > 
+                                                    <span>
+                                                    Calories</span><br />
+                                                        <span className='heading'>{Math.round(ele.calories)}</span></div>                                             <NavLink to={
+                                                        {
+                                                            pathname: `${ele.label}/ingredients`,
+                                                            aboutProps: {
+                                                                ingredients: { ...ele.ingredientLines },
+                                                                nutrients: { ...ele.totalNutrients },
+                                                                calories:ele.calories,
+                                                                label: ele.label,
+                                                                image: ele.image,
+                                                                source: ele.source,
+                                                                url:ele.url,
+                                                                healthLabels:{...ele.healthLabels},
+                                                                yeild:ele.yeild,
+                                                                dishname:dishname,
+                                                                setname:setname,
+                                                                fetchData:fetchData,
+                                                            }
+                                                        }
+
+                                                    }
+                                                    style={{ textDecoration: "none",color:"black", }}>
+
+                                                        <div>
+                                                        
+                                                   <span>Ingredients</span>
+                                                       <br></br>
+                                                       <span className='heading'>{ele.ingredientLines.length}</span>
+                                                        </div>
+                                                        </NavLink>
+                                                        
+                                                </div>
+                                                <button type="button" className=" fav btn btn-primary  btn-warning">Add to favroutes</button>
+
+                                                {/* <div style={{ fontFamily: "revert-layer", fontWeight: "bold", height: "50px", overflow: "hidden" }}>{ele.label}</div> */}
+                                                {/* <hr /> */}
+                                                {/* <div><span style={{ fontWeight: "bold" }}> Calories: </span>
                                                     <span> {Math.round(ele.calories)} </span>
                                                     <span> | </span><NavLink to={
                                                         {
@@ -105,9 +144,9 @@ const RecipePage = () => {
                                                         }
 
                                                     } style={{ textDecoration: "none" }}> <span className="text-dark">{ele.ingredientLines.length} </span> <span style={{ fontWeight: "bold", color: "black" }}> Ingredients</span> </NavLink>
-                                                </div>
-                                                <hr />
-                                                <a href={`${ele.url}`} style={{ textDecoration: "none", color: "black" }}>{ele.source}<img src="https://static.vecteezy.com/system/resources/previews/000/554/187/original/vector-arrow-icon.jpg" width="20px" /></a>
+                                                </div> */}
+                                                {/* <hr />
+                                                <a href={`${ele.url}`} style={{ textDecoration: "none", color: "black" }}>{ele.source}<img src="https://static.vecteezy.com/system/resources/previews/000/554/187/original/vector-arrow-icon.jpg" width="20px" /></a> */}
                                             </div>
                                         </div>
 
