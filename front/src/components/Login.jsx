@@ -43,7 +43,7 @@ const Login = () => {
          else{
              alert("Successfull Login")
              setData({username:"",email:"",password:""})
-             history.push("/")
+             history.push("/Recipe")
          }
      
     

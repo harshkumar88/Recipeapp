@@ -12,18 +12,23 @@ const RecipePage = () => {
     const [dishname, setname] = useState("");
     const [recipeCard, setInfo] = useState([]);
     const [shown, set] = useState(false);
-
+    const [datasend, setdatasend] = useState([]);
+    const [dataremove,setdataremove]=useState([]);
+   useEffect(()=>{
+    console.log(datasend)
+   },[datasend])
     useEffect(() => {
-        if(location.state){
-            
+        if (location.state) {
+
             setname(location.state.dish);
             a(location.state.dish);
         }
         else
-        set(false)
+            set(false)
     }, [])
 
-    const a=async(dish)=>{
+   
+    const a = async (dish) => {
         set(true);
         // e.preventDefault();
         const res = await fetch(`https://api.edamam.com/search?q=${dish}&app_id=b32ade57&app_key=
@@ -36,14 +41,34 @@ const RecipePage = () => {
         var recipeData = [];
 
         for (let i of recipe) {
-            const { calories, label, url, ingredientLines, image, source, totalNutrients,healthLabels,yeild } = i.recipe;
-            const newdata = { calories, label, url, ingredientLines, image, source, totalNutrients,healthLabels,yeild };
+            const { calories, label, url, ingredientLines, image, source, totalNutrients, healthLabels, yeild } = i.recipe;
+            const newdata = { calories, label, url, ingredientLines, image, source, totalNutrients, healthLabels, yeild };
             recipeData.push(newdata)
         }
 
         console.log(data)
         setInfo(recipeData);
     }
+
+    function handleFavourites(e,ele){
+    
+         let text=e.target.innerHTML;
+
+        if(text==='Add to favourites'){
+             setdatasend([...datasend, ele]);
+            e.target.innerHTML="Remove Favourites"
+        }
+        else{
+            const arr=datasend.filter((value,id)=>{
+                  return value!==ele;
+            })
+            setdatasend(arr)
+            e.target.innerHTML="Add to favourites"
+
+        }
+        
+    }
+
     const fetchData = async () => {
         set(true);
         // e.preventDefault();
@@ -57,8 +82,8 @@ const RecipePage = () => {
         var recipeData = [];
 
         for (let i of recipe) {
-            const { calories, label, url, ingredientLines, image, source, totalNutrients,healthLabels,yeild } = i.recipe;
-            const newdata = { calories, label, url, ingredientLines, image, source, totalNutrients,healthLabels,yeild };
+            const { calories, label, url, ingredientLines, image, source, totalNutrients, healthLabels, yeild } = i.recipe;
+            const newdata = { calories, label, url, ingredientLines, image, source, totalNutrients, healthLabels, yeild };
             recipeData.push(newdata)
         }
 
@@ -68,7 +93,7 @@ const RecipePage = () => {
     return (
         <>
             <div className='container-fluid body' style={{ height: "100vh" }}>
-                <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="false"/>
+                <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="false" />
 
                 {
                     shown == false ? <div className='container p-5 text-center topDist GetTop'>
@@ -81,44 +106,44 @@ const RecipePage = () => {
                                         <div >
                                             <img src={ele.image} alt="Food image" className='w-100 card-border' />
                                             <div>
-                                                <a  href={`${ele.url}`} target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFTC7YKP7zkKVpWrWY5Z3AU-TXuHumM3KeQ&usqp=CAU "  className='mini-logo'/></a>
+                                                <a href={`${ele.url}`} target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFTC7YKP7zkKVpWrWY5Z3AU-TXuHumM3KeQ&usqp=CAU " className='mini-logo' /></a>
                                                 <p className='para'> {ele.label}</p>
-                                                <div className='flexcalo'>
-                                                <div style={{width:"100px",}} > 
-                                                    <span>
-                                                    Calories</span><br />
+                                                <div className='flexcalo container'>
+                                                    <div style={{ width: "100px" }} >
+                                                        <span>
+                                                            Calories</span><br />
                                                         <span className='heading'>{Math.round(ele.calories)}</span></div>                                             <NavLink to={
-                                                        {
-                                                            pathname: `${ele.label}/ingredients`,
-                                                            aboutProps: {
-                                                                ingredients: { ...ele.ingredientLines },
-                                                                nutrients: { ...ele.totalNutrients },
-                                                                calories:ele.calories,
-                                                                label: ele.label,
-                                                                image: ele.image,
-                                                                source: ele.source,
-                                                                url:ele.url,
-                                                                healthLabels:{...ele.healthLabels},
-                                                                yeild:ele.yeild,
-                                                                dishname:dishname,
-                                                                setname:setname,
-                                                                fetchData:fetchData,
+                                                            {
+                                                                pathname: `${ele.label}/ingredients`,
+                                                                aboutProps: {
+                                                                    ingredients: { ...ele.ingredientLines },
+                                                                    nutrients: { ...ele.totalNutrients },
+                                                                    calories: ele.calories,
+                                                                    label: ele.label,
+                                                                    image: ele.image,
+                                                                    source: ele.source,
+                                                                    url: ele.url,
+                                                                    healthLabels: { ...ele.healthLabels },
+                                                                    yeild: ele.yeild,
+                                                                    dishname: dishname,
+                                                                    setname: setname,
+                                                                    fetchData: fetchData,
+                                                                }
                                                             }
-                                                        }
 
-                                                    }
-                                                    style={{ textDecoration: "none",color:"black", }}>
+                                                        }
+                                                            style={{ textDecoration: "none", color: "black", }}>
 
                                                         <div>
-                                                        
-                                                   <span>Ingredients</span>
-                                                       <br></br>
-                                                       <span className='heading'>{ele.ingredientLines.length}</span>
+
+                                                            <span>Ingredients</span>
+                                                            <br></br>
+                                                            <span className='heading'>{ele.ingredientLines.length}</span>
                                                         </div>
-                                                        </NavLink>
-                                                        
+                                                    </NavLink>
+
                                                 </div>
-                                                <button type="button" className=" fav btn btn-primary  btn-warning">Add to favroutes</button>
+                                                <button type="button" className=" fav btn btn-primary  btn-warning " onClick={(e)=>handleFavourites(e,ele)} >Add to favourites</button>
 
                                                 {/* <div style={{ fontFamily: "revert-layer", fontWeight: "bold", height: "50px", overflow: "hidden" }}>{ele.label}</div> */}
                                                 {/* <hr /> */}

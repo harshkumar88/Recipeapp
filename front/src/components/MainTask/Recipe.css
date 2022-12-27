@@ -60,7 +60,7 @@
   width:100%;
   position: relative;
   bottom:40px;
-  left:25px;
+  /* left:25px; */
 }
 .heading{
   font-weight: bold;
@@ -99,3 +99,14 @@
   
 }
 
+.favourite{
+  position: fixed;
+  z-index: 3;
+  right: 70px;
+  top:85vh;
+  width: 70px;
+  font-size: 60px;
+  color: red;
+  
+  
+}
