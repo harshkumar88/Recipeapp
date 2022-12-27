@@ -43,7 +43,14 @@ const Login = () => {
          else{
              alert("Successfull Login")
              setData({username:"",email:"",password:""})
-             history.push("/Recipe")
+             
+             history.push({
+                pathname: '/Recipe',
+                state: {  // location state
+                    email:email,
+                    name:username
+                }
+            })
          }
      
     

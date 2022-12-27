@@ -46,6 +46,17 @@ router.post("/registerData", async (req, res) => {
     }
 })
 
+router.post("/Favourites",async(req,res)=>{
+      const {datasend,email}=req.body;
+
+    //   console.log(email);
+    //   for(let i of datasend){
+    //     console.log(i.label)
+    //   }
+
+      res.status(201).json({message:"Success"});
+})
+
 router.post("/LoginData", async (req, res) => {
     const { username, email, password } = req.body;
 

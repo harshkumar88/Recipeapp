@@ -12,10 +12,14 @@ const Ingredients = (props) => {
   const [healthLabels,setLabels]=useState([]);
   const [dishname, setname] = useState("");
   const [fetchData,setFunc]=useState();
+  const [email,setEmail]=useState();
+  const [name,setName]=useState();
 
 
   useEffect(() => {
     const data = props.location.aboutProps;
+    setEmail(data.email)
+    setName(data.name)
     setdata(data);
     const ingredients = Object.values(data.ingredients);
     setingridients(ingredients)
@@ -33,8 +37,8 @@ const Ingredients = (props) => {
   return (
 
     <div className='mt-5' >
-    <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="true"/>
-    <div className='container-fluid topDist GetTop'>
+    <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="true" email={email} name={name}/>
+    <div className='container-fluid topDist GetTop mt-3'>
     
       <div className='container-fluid w60 row bg-light  '>
 

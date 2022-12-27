@@ -14,12 +14,34 @@ const RecipePage = () => {
     const [shown, set] = useState(false);
     const [datasend, setdatasend] = useState([]);
     const [dataremove,setdataremove]=useState([]);
-   useEffect(()=>{
-    console.log(datasend)
-   },[datasend])
-    useEffect(() => {
-        if (location.state) {
+    const [email,setEmail]=useState();
+    const [name,setName]=useState();
 
+   useEffect(()=>{
+      addFavourites();
+   },[datasend])
+
+   const addFavourites=async()=>{
+      console.log(datasend,email);
+
+      const res=await fetch("/Favourites",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+              datasend,email
+        })
+      })
+       
+   }
+    useEffect(() => {
+        const em=location.state.email;
+        const namee=location.state.name;
+        setEmail(em);
+        setName(namee)
+        addFavourites();
+        if (location.state.dish!==undefined) {
             setname(location.state.dish);
             a(location.state.dish);
         }
@@ -56,7 +78,8 @@ const RecipePage = () => {
 
         if(text==='Add to favourites'){
              setdatasend([...datasend, ele]);
-            e.target.innerHTML="Remove Favourites"
+            e.target.innerHTML="Remove from Favourites"
+            e.target.style.backgroundColor="red";
         }
         else{
             const arr=datasend.filter((value,id)=>{
@@ -64,6 +87,7 @@ const RecipePage = () => {
             })
             setdatasend(arr)
             e.target.innerHTML="Add to favourites"
+            e.target.style.backgroundColor="#Ffc107";
 
         }
         
@@ -93,7 +117,7 @@ const RecipePage = () => {
     return (
         <>
             <div className='container-fluid body' style={{ height: "100vh" }}>
-                <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="false" />
+                <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="false" email={email} name={name} />
 
                 {
                     shown == false ? <div className='container p-5 text-center topDist GetTop'>
@@ -128,6 +152,8 @@ const RecipePage = () => {
                                                                     dishname: dishname,
                                                                     setname: setname,
                                                                     fetchData: fetchData,
+                                                                    email:email,
+                                                                    name:name
                                                                 }
                                                             }
 
