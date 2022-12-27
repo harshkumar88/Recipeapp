@@ -8,8 +8,10 @@ import { useHistory } from 'react-router-dom'
 const SearchBar = ({dishname,setname,fetchData,check}) => {
     const history=useHistory();
     return (
-        <div className='w-100 fixednav text-center bg-light pb-2'>
-            <div className='container'>
+        <div className='w-100 fixednav text-center bg-light pb-2 p-3 row' style={{borderBottom:"1px solid black"}}>
+        <div className='col-lg-3 mb-2'> <font face="Comic sans MS" size="5" color="black" style={{textDecoration:"underline"}}>Recipe
+    </font><img  src='https://cdn-icons-png.flaticon.com/512/1721/1721455.png' style={{width:"50px"}}/></div>
+            <div className='container col-lg-9 col-sm-12'>
                 <form action="#">
                     <div className='container inline w-50'><input type="text" value={dishname} onChange={(e) => {
                         setname(e.target.value)

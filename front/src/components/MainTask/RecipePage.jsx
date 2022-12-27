@@ -15,15 +15,37 @@ const RecipePage = () => {
 
     useEffect(() => {
         if(location.state){
+            
             setname(location.state.dish);
-            
-            
+            a(location.state.dish);
         }
+        else
         set(false)
     }, [])
+
+    const a=async(dish)=>{
+        set(true);
+        // e.preventDefault();
+        const res = await fetch(`https://api.edamam.com/search?q=${dish}&app_id=b32ade57&app_key=
+      4fc3de2f236498685967a41feda57d37`);
+        // console.log(res)
+        const data = await res.json();
+        const recipe = data.hits;
+        // console.log(recipe)
+
+        var recipeData = [];
+
+        for (let i of recipe) {
+            const { calories, label, url, ingredientLines, image, source, totalNutrients,healthLabels,yeild } = i.recipe;
+            const newdata = { calories, label, url, ingredientLines, image, source, totalNutrients,healthLabels,yeild };
+            recipeData.push(newdata)
+        }
+
+        console.log(data)
+        setInfo(recipeData);
+    }
     const fetchData = async () => {
         set(true);
-        
         // e.preventDefault();
         const res = await fetch(`https://api.edamam.com/search?q=${dishname}&app_id=b32ade57&app_key=
       4fc3de2f236498685967a41feda57d37`);
@@ -49,7 +71,7 @@ const RecipePage = () => {
                 <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="false"/>
 
                 {
-                    shown == false ? <div className='container p-5 text-center topDist'>
+                    shown == false ? <div className='container p-5 text-center topDist GetTop'>
                         <h1>Type Recipe you want to search</h1>
                     </div> :
                         <div className=' container-fluid mx-auto  topDist mb-5 ' style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>

@@ -32,20 +32,20 @@ const Ingredients = (props) => {
 
   return (
 
-    <div>
+    <div className='mt-5' >
     <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="true"/>
-    <div className='container-fluid topDist'>
+    <div className='container-fluid topDist GetTop'>
     
-      <div className='container-fluid flex-box  bg-light '>
+      <div className='container-fluid w60 row bg-light  '>
 
-        <div><img src={data.image} className="img-fluid"/></div>
-        <div>
-          <div>
+        <div className='col-lg-4  '><img src={data.image} className="img-fluid"/></div>
+      
+          <div className='col-lg-6'>
             <h2>{data.label}</h2>
             <p>See full Recipe <a href={`${data.url}`}>{data.source}</a></p>
-            <button className='mt-3'>Favourites</button>
+            <button className='mt-3 mb-4'>Favourites</button>
           </div>
-        </div>
+        
 
       </div>
 
@@ -71,15 +71,29 @@ const Ingredients = (props) => {
                  })
               }
             </div>
-            <div>
+            <div style={{display:"flex"}}>
+            <div style={{width:"auto",wordBreak:"break-all"}}> Item 
+            <hr/>
              {
               nutrientsKeys.map((ele,id)=>{
                 // console.log(nutrients[ele])
                   return (
-                    <div className='my-2'> <span className='ms-0'>{nutrients[ele].label}</span>--<span className='margin-right'>{Math.round(nutrients[ele].quantity)}{nutrients[ele].unit}</span> </div>
+                    <div className='my-2'> <span className='ms-0'>{nutrients[ele].label}</span></div>
                   )
               })
              }
+            </div>
+            <div style={{width:"auto"}}> quantity
+            <hr/>
+             {
+              nutrientsKeys.map((ele,id)=>{
+                // console.log(nutrients[ele])
+                  return (
+                    <div className='my-2'> <span className='margin-right'>{Math.round(nutrients[ele].quantity)} {nutrients[ele].unit}</span> </div>
+                  )
+              })
+             }
+            </div>
             </div>
           </div>
         </div>

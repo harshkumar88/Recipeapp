@@ -21,9 +21,19 @@
   margin: 0px;
   padding: 0px
 }
+
 .topDist{
-   position: absolute;
-   top:100px;
-   
+  position: absolute;
+  top:100px;
+}
+
+
+@media  (max-width: 1000px) {
+  
+    .topDist{
+      position: absolute;
+       top:"500px"
+    }
+  
 }
 
