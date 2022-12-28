@@ -9,7 +9,6 @@ import {AiOutlineSearch} from "react-icons/ai";
 
 const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
     const history = useHistory();
-   
     return (
         <div className=' w-100 down'>
             <div className='favourite container'>

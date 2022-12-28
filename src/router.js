@@ -5,7 +5,7 @@ const validator = require('validator');
 router.use(bp.json());
 router.use(bp.urlencoded({ extended: true }));
 require("./database.js");
-const { Register } = require("./collections.js")
+const { Register, User } = require("./collections.js")
 
 router.post("/registerData", async (req, res) => {
     const { username, email, password, confirmpass } = req.body;
@@ -24,12 +24,12 @@ router.post("/registerData", async (req, res) => {
                 return user.email === email
             })
 
-            if(finduser){
-                return res.status(422).json({error:"UserExist"});
+            if (finduser) {
+                return res.status(422).json({ error: "UserExist" });
             }
 
             const register = new Register({
-                username,email,password,confirmpass
+                username, email, password, confirmpass
             })
             console.log(register)
             await register.save();
@@ -46,10 +46,76 @@ router.post("/registerData", async (req, res) => {
     }
 })
 
-router.post("/Favourites",async(req,res)=>{
-      const {datasend,email}=req.body;
+router.post("/Favourites", async (req, res) => {
+    const { info, email, value } = req.body;
+    console.log(value,email)
 
-      res.status(201).json({message:"Success"});
+    try {
+
+        const userdata = await User.find({});
+
+        const userfind = userdata.find((u) => {
+            return u.email === email;
+        })
+
+        var data ;
+
+        if (userfind) {
+            data = userfind.data;
+            const deleteuser = await User.findByIdAndDelete(userfind.id);
+
+        }
+        else {
+            console.log("no user found")
+        }
+
+        if (value == 0) {
+             let a=0;
+
+             for(let i of data){
+                if(i.label==info.label && i.image==info.image){
+                    console.log(i.label+"hi")
+                    a=1;
+                    break;
+                }
+                
+             }
+             if(a==0){
+                data.push(info)
+             }
+        }
+
+        else{
+            var arr=data;
+            data=[];
+            for(let i of arr){
+                if(i.label!=info.label && i.image!=info.image){
+                    data.push(i)
+                }
+             }
+        }
+
+
+       
+
+        const user = new User({
+            email: email,
+            data: data
+        })
+
+        await user.save();
+
+console.log("--------------------------")
+for (let i of user.data) {
+    console.log(i.label)
+}
+
+    }
+    catch (e) {
+
+    }
+
+    res.status(201).json({ message: "Success" });
 })
 
 router.post("/LoginData", async (req, res) => {
@@ -61,24 +127,24 @@ router.post("/LoginData", async (req, res) => {
             const finduser = userdata.find((user) => {
                 return user.email === email
             })
-            
-            if(finduser===undefined){
+
+            if (finduser === undefined) {
                 console.log("a");
-              return res.status(422).json({error:'UserNotFound'})
+                return res.status(422).json({ error: 'UserNotFound' })
             }
-            else if(finduser.password!==password){
-                
-             return res.status(422).json({error:"passwordincorrect"});
+            else if (finduser.password !== password) {
+
+                return res.status(422).json({ error: "passwordincorrect" });
             }
-            else{
-            return res.status(201).json({message:"Success"});
+            else {
+                return res.status(201).json({ message: "Success" });
             }
-           
-            
-            
+
+
+
         } catch (error) {
             return res.send("error")
-            
+
         }
         //return res.status(200).json("successfull")
     }

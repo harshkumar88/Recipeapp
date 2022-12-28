@@ -12,26 +12,22 @@ const RecipePage = () => {
     const [dishname, setname] = useState("");
     const [recipeCard, setInfo] = useState([]);
     const [shown, set] = useState(false);
-    const [datasend, setdatasend] = useState([]);
-    const [dataremove,setdataremove]=useState([]);
+    const [datasend, setdatasend] = useState();
+    const [dataremove,setdataremove]=useState();
     const [email,setEmail]=useState();
     const [name,setName]=useState();
     const [checkw,setWidth]=useState(false);
 
-   useEffect(()=>{
-      addFavourites();
-   },[datasend])
 
-   const addFavourites=async()=>{
-      console.log(datasend,email);
-
+   const addFavourites=async(ele,v)=>{
+      
       const res=await fetch("/Favourites",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
         },
         body:JSON.stringify({
-              datasend,email
+             email,info:ele,value:v
         })
       })
        
@@ -61,7 +57,7 @@ const RecipePage = () => {
         const namee=location.state.name;
         setEmail(em);
         setName(namee)
-        addFavourites();
+        
         if (location.state.dish!==undefined) {
             setname(location.state.dish);
             a(location.state.dish);
@@ -98,19 +94,18 @@ const RecipePage = () => {
          let text=e.target.innerHTML;
 
         if(text==='Add to favourites'){
-             setdatasend([...datasend, ele]);
+             setdatasend(ele);
             e.target.innerHTML="Remove from Favourites"
             e.target.style.backgroundColor="red";
+            addFavourites(ele,0);
         }
         else{
-            const arr=datasend.filter((value,id)=>{
-                  return value!==ele;
-            })
-            setdatasend(arr)
+             setdataremove(ele)
             e.target.innerHTML="Add to favourites"
             e.target.style.backgroundColor="#Ffc107";
-
+            addFavourites(ele,1);
         }
+        
         
     }
 
@@ -147,7 +142,7 @@ const RecipePage = () => {
                         <div className='w-100 mx-auto  topDist mb-5' style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
                             {recipeCard.map((ele, id) => {
                                 return (
-                                    <div key={id} className="mt-3 mb-2 text-center card-design bg-light onhover " style={checkw===true?{width:"67%"}:{width:"250px"}}>
+                                    <div key={id} className="mt-3 mb-2 text-center card-design bg-light onhover " style={checkw===true?{width:"67%"}:{width:"270px"}}>
                                         <div className='w-100' >
                                             <img src={ele.image} alt="Food image" className='w-100 card-border' />
                                             <div>
