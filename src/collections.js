@@ -40,7 +40,8 @@ const UserData=new mongoose.Schema({
     },
    data:{
     type:Array,
-    required:true
+    required:true,
+    unique:true
    }
 })
 

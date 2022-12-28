@@ -58,29 +58,30 @@ router.post("/Favourites", async (req, res) => {
             return u.email === email;
         })
 
-        var data ;
+        var data;
 
         if (userfind) {
+            console.log("user found")
             data = userfind.data;
             const deleteuser = await User.findByIdAndDelete(userfind.id);
-
+            
         }
         else {
             console.log("no user found")
         }
 
-        if (value == 0) {
+        if (value == '0') {
              let a=0;
 
              for(let i of data){
-                if(i.label==info.label && i.image==info.image){
-                    console.log(i.label+"hi")
+                if(i.label==info.label){
+                   
                     a=1;
                     break;
                 }
                 
              }
-             if(a==0){
+             if(a==0 || data.length==0){
                 data.push(info)
              }
         }
@@ -89,7 +90,7 @@ router.post("/Favourites", async (req, res) => {
             var arr=data;
             data=[];
             for(let i of arr){
-                if(i.label!=info.label && i.image!=info.image){
+                if(i.label!=info.label){
                     data.push(i)
                 }
              }
