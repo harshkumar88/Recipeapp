@@ -36,9 +36,8 @@ const UserData=new mongoose.Schema({
         trim:true,
         unique:true,
         lowercase:true
-        
     },
-   data:{
+   Data:{
     type:Array,
     required:true,
     unique:true
@@ -47,7 +46,7 @@ const UserData=new mongoose.Schema({
 
 
 const Register=mongoose.model("Register",RegisterSchema);
-const User=mongoose.model("Favourites",UserData);
+const User=mongoose.model("User",UserData);
 module.exports={
     Register,User
 };

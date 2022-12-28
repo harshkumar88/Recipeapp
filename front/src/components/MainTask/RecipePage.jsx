@@ -13,52 +13,52 @@ const RecipePage = () => {
     const [recipeCard, setInfo] = useState([]);
     const [shown, set] = useState(false);
     const [datasend, setdatasend] = useState();
-    const [dataremove,setdataremove]=useState();
-    const [email,setEmail]=useState();
-    const [name,setName]=useState();
-    const [checkw,setWidth]=useState(false);
+    const [dataremove, setdataremove] = useState();
+    const [email, setEmail] = useState();
+    const [name, setName] = useState();
+    const [checkw, setWidth] = useState(false);
 
 
-   const addFavourites=async(ele,v)=>{
-      
-      const res=await fetch("/Favourites",{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-             email,info:ele,value:v
+    const addFavourites = async (ele, v) => {
+
+        const res = await fetch("/Favourites", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email, info: ele, value: v
+            })
         })
-      })
-       
-   }
-   window.onresize = function(event) {
-      var viewport_width = window.innerWidth;
 
-        if(viewport_width<=500){
-              setWidth(true)
-        }
-        else{
-            setWidth(false)
-        }
-};
-    useEffect(() => {
-       
+    }
+    window.onresize = function (event) {
         var viewport_width = window.innerWidth;
 
-        if(viewport_width<=500){
-              setWidth(true)
+        if (viewport_width <= 500) {
+            setWidth(true)
         }
-        else{
+        else {
             setWidth(false)
         }
-        
-        const em=location.state.email;
-        const namee=location.state.name;
+    };
+    useEffect(() => {
+
+        var viewport_width = window.innerWidth;
+
+        if (viewport_width <= 500) {
+            setWidth(true)
+        }
+        else {
+            setWidth(false)
+        }
+
+        const em = location.state.email;
+        const namee = location.state.name;
         setEmail(em);
         setName(namee)
-        
-        if (location.state.dish!==undefined) {
+
+        if (location.state.dish !== undefined) {
             setname(location.state.dish);
             a(location.state.dish);
         }
@@ -66,7 +66,7 @@ const RecipePage = () => {
             set(false)
     }, [])
 
-   
+
     const a = async (dish) => {
         set(true);
         // e.preventDefault();
@@ -89,24 +89,24 @@ const RecipePage = () => {
         setInfo(recipeData);
     }
 
-    function handleFavourites(e,ele){
-    
-         let text=e.target.innerHTML;
+    function handleFavourites(e, ele) {
 
-        if(text==='Add to favourites'){
-             setdatasend(ele);
-            e.target.innerHTML="Remove from Favourites"
-            e.target.style.backgroundColor="red";
-            addFavourites(ele,0);
+        let text = e.target.innerHTML;
+
+        if (text === 'Add to favourites') {
+            setdatasend(ele);
+            e.target.innerHTML = "Remove from Favourites"
+            e.target.style.backgroundColor = "red";
+            addFavourites(ele, 0);
         }
-        else{
-             setdataremove(ele)
-            e.target.innerHTML="Add to favourites"
-            e.target.style.backgroundColor="#Ffc107";
-            addFavourites(ele,1);
+        else {
+            setdataremove(ele)
+            e.target.innerHTML = "Add to favourites"
+            e.target.style.backgroundColor = "#Ffc107";
+            addFavourites(ele, 1);
         }
-        
-        
+
+
     }
 
     const fetchData = async () => {
@@ -142,7 +142,7 @@ const RecipePage = () => {
                         <div className='w-100 mx-auto  topDist mb-5' style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
                             {recipeCard.map((ele, id) => {
                                 return (
-                                    <div key={id} className="mt-3 mb-2 text-center card-design bg-light onhover " style={checkw===true?{width:"67%"}:{width:"270px"}}>
+                                    <div key={id} className="mt-3 mb-2 text-center card-design bg-light onhover " style={checkw === true ? { width: "67%" } : { width: "270px" }}>
                                         <div className='w-100' >
                                             <img src={ele.image} alt="Food image" className='w-100 card-border' />
                                             <div>
@@ -168,8 +168,8 @@ const RecipePage = () => {
                                                                     dishname: dishname,
                                                                     setname: setname,
                                                                     fetchData: fetchData,
-                                                                    email:email,
-                                                                    name:name
+                                                                    email: email,
+                                                                    name: name
                                                                 }
                                                             }
 
@@ -185,9 +185,9 @@ const RecipePage = () => {
                                                     </NavLink>
 
                                                 </div>
-                                                <button type="button" className=" fav btn btn-primary  btn-warning " onClick={(e)=>handleFavourites(e,ele)} >Add to favourites</button>
+                                                <button type="button" className=" fav btn btn-primary  btn-warning " onClick={(e) => handleFavourites(e, ele)} >Add to favourites</button>
 
-                                               
+
                                             </div>
                                         </div>
 

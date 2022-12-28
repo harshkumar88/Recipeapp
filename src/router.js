@@ -58,11 +58,11 @@ router.post("/Favourites", async (req, res) => {
             return u.email === email;
         })
 
-        var data;
+        var data=[];
 
         if (userfind) {
             console.log("user found")
-            data = userfind.data;
+            data = userfind.Data;
             const deleteuser = await User.findByIdAndDelete(userfind.id);
             
         }
@@ -96,18 +96,16 @@ router.post("/Favourites", async (req, res) => {
              }
         }
 
-
-       
-
         const user = new User({
             email: email,
-            data: data
+            Data: data
         })
+        
 
         await user.save();
 
 console.log("--------------------------")
-for (let i of user.data) {
+for (let i of user.Data) {
     console.log(i.label)
 }
 

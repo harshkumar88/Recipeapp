@@ -3,7 +3,7 @@ import "./Recipe.css"
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { AiFillHeart } from "react-icons/ai";
 import {AiOutlineSearch} from "react-icons/ai";
 
@@ -12,7 +12,14 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
     return (
         <div className=' w-100 down'>
             <div className='favourite container'>
-                <AiFillHeart />
+                <NavLink to={
+                    {
+                        pathname: `${name}/Favourites`,
+                        aboutProps: {
+                            email:email
+                        }
+                    }
+                }><AiFillHeart className='text-danger'/></NavLink>
             </div>
             <div className='container-fluid w-100 fixednav text-center bg-light pb-2 p-3 ' style={{ borderBottom: "1px solid black",display:"flex" }}>
                 <div className='col-lg-3 mb-2 container col-xs-3'> <font face="Comic sans MS" size="5" color="black" style={{ textDecoration: "underline" }}>Recipe
