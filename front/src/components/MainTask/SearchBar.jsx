@@ -11,11 +11,11 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
     const history = useHistory();
    
     return (
-        <div className='container-fluid w-100 down'>
+        <div className=' w-100 down'>
             <div className='favourite container'>
                 <AiFillHeart />
             </div>
-            <div className='container-fluid w-100 fixednav text-center bg-light pb-2 p-3 row ' style={{ borderBottom: "1px solid black" }}>
+            <div className='container-fluid w-100 fixednav text-center bg-light pb-2 p-3 ' style={{ borderBottom: "1px solid black",display:"flex" }}>
                 <div className='col-lg-3 mb-2 container col-xs-3'> <font face="Comic sans MS" size="5" color="black" style={{ textDecoration: "underline" }}>Recipe
                 </font><img src='https://cdn-icons-png.flaticon.com/512/1721/1721455.png' style={{ width: "50px" }} /></div>
                 <div className='container col-lg-6 col-xs-4'>

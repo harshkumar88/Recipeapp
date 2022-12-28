@@ -16,6 +16,7 @@ const RecipePage = () => {
     const [dataremove,setdataremove]=useState([]);
     const [email,setEmail]=useState();
     const [name,setName]=useState();
+    const [checkw,setWidth]=useState(false);
 
    useEffect(()=>{
       addFavourites();
@@ -35,7 +36,27 @@ const RecipePage = () => {
       })
        
    }
+   window.onresize = function(event) {
+      var viewport_width = window.innerWidth;
+
+        if(viewport_width<=500){
+              setWidth(true)
+        }
+        else{
+            setWidth(false)
+        }
+};
     useEffect(() => {
+       
+        var viewport_width = window.innerWidth;
+
+        if(viewport_width<=500){
+              setWidth(true)
+        }
+        else{
+            setWidth(false)
+        }
+        
         const em=location.state.email;
         const namee=location.state.name;
         setEmail(em);
@@ -116,18 +137,18 @@ const RecipePage = () => {
     }
     return (
         <>
-            <div className='container-fluid body' style={{ height: "100vh" }}>
+            <div className='container-fluid body w-100' style={{ height: "100vh" }}>
                 <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="false" email={email} name={name} />
 
                 {
-                    shown == false ? <div className='container p-5 text-center topDist GetTop'>
+                    shown == false ? <div className='container-fluid p-5 text-center topDist GetTop'>
                         <h1>Type Recipe you want to search</h1>
                     </div> :
-                        <div className=' container-fluid mx-auto  topDist mb-5 ' style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
+                        <div className='w-100 mx-auto  topDist mb-5' style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
                             {recipeCard.map((ele, id) => {
                                 return (
-                                    <div key={id} className=" mt-3 mb-2 text-center card-design bg-light onhover" style={{ width: "250px" }}>
-                                        <div >
+                                    <div key={id} className="mt-3 mb-2 text-center card-design bg-light onhover " style={checkw===true?{width:"67%"}:{width:"250px"}}>
+                                        <div className='w-100' >
                                             <img src={ele.image} alt="Food image" className='w-100 card-border' />
                                             <div>
                                                 <a href={`${ele.url}`} target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFTC7YKP7zkKVpWrWY5Z3AU-TXuHumM3KeQ&usqp=CAU " className='mini-logo' /></a>
@@ -171,33 +192,7 @@ const RecipePage = () => {
                                                 </div>
                                                 <button type="button" className=" fav btn btn-primary  btn-warning " onClick={(e)=>handleFavourites(e,ele)} >Add to favourites</button>
 
-                                                {/* <div style={{ fontFamily: "revert-layer", fontWeight: "bold", height: "50px", overflow: "hidden" }}>{ele.label}</div> */}
-                                                {/* <hr /> */}
-                                                {/* <div><span style={{ fontWeight: "bold" }}> Calories: </span>
-                                                    <span> {Math.round(ele.calories)} </span>
-                                                    <span> | </span><NavLink to={
-                                                        {
-                                                            pathname: `${ele.label}/ingredients`,
-                                                            aboutProps: {
-                                                                ingredients: { ...ele.ingredientLines },
-                                                                nutrients: { ...ele.totalNutrients },
-                                                                calories:ele.calories,
-                                                                label: ele.label,
-                                                                image: ele.image,
-                                                                source: ele.source,
-                                                                url:ele.url,
-                                                                healthLabels:{...ele.healthLabels},
-                                                                yeild:ele.yeild,
-                                                                dishname:dishname,
-                                                                setname:setname,
-                                                                fetchData:fetchData,
-                                                            }
-                                                        }
-
-                                                    } style={{ textDecoration: "none" }}> <span className="text-dark">{ele.ingredientLines.length} </span> <span style={{ fontWeight: "bold", color: "black" }}> Ingredients</span> </NavLink>
-                                                </div> */}
-                                                {/* <hr />
-                                                <a href={`${ele.url}`} style={{ textDecoration: "none", color: "black" }}>{ele.source}<img src="https://static.vecteezy.com/system/resources/previews/000/554/187/original/vector-arrow-icon.jpg" width="20px" /></a> */}
+                                               
                                             </div>
                                         </div>
 
