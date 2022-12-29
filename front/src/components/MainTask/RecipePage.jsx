@@ -9,6 +9,7 @@ import SearchBar from './SearchBar';
 
 const RecipePage = () => {
     const location = useLocation();
+    const history=useHistory();
     const [dishname, setname] = useState("");
     const [recipeCard, setInfo] = useState([]);
     const [shown, set] = useState(false);
@@ -130,6 +131,7 @@ const RecipePage = () => {
         console.log(data)
         setInfo(recipeData);
     }
+
     return (
         <>
             <div className='container-fluid body w-100' style={{ height: "100vh" }}>
@@ -142,47 +144,67 @@ const RecipePage = () => {
                         <div className='w-100 mx-auto  topDist mb-5' style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
                             {recipeCard.map((ele, id) => {
                                 return (
-                                    <div key={id} className="mt-3 mb-2 text-center card-design bg-light onhover " style={checkw === true ? { width: "67%" } : { width: "270px" }}>
+                                    <div key={id} className="mt-3 mb-5 text-center card-design bg-light onhover " style={checkw === true ? { width: "67%" } : { width: "270px" }}>
                                         <div className='w-100' >
                                             <img src={ele.image} alt="Food image" className='w-100 card-border' />
                                             <div>
                                                 <a href={`${ele.url}`} target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFTC7YKP7zkKVpWrWY5Z3AU-TXuHumM3KeQ&usqp=CAU " className='mini-logo' /></a>
                                                 <p className='para'> {ele.label}</p>
                                                 <div className='flexcalo container'>
-                                                    <div style={{ width: "100px" }} >
-                                                        <span>
-                                                            Calories</span><br />
-                                                        <span className='heading'>{Math.round(ele.calories)}</span></div>                                             <NavLink to={
+                                                    <div style={{ width: "100px" }} className="pointer"  onClick={()=>{
+                                                        history.push(
                                                             {
-                                                                pathname: `${ele.label}/ingredients`,
-                                                                aboutProps: {
-                                                                    ingredients: { ...ele.ingredientLines },
-                                                                    nutrients: { ...ele.totalNutrients },
-                                                                    calories: ele.calories,
-                                                                    label: ele.label,
-                                                                    image: ele.image,
-                                                                    source: ele.source,
-                                                                    url: ele.url,
-                                                                    healthLabels: { ...ele.healthLabels },
-                                                                    yeild: ele.yeild,
-                                                                    dishname: dishname,
-                                                                    setname: setname,
-                                                                    fetchData: fetchData,
-                                                                    email: email,
-                                                                    name: name
+                                                              pathname: `${ele.label}/Nutrition`,
+                                                                state: {
+                                                                  ingredients: { ...ele.ingredientLines },
+                                                                  nutrients: { ...ele.totalNutrients },
+                                                                  calories: ele.calories,
+                                                                  label: ele.label,
+                                                                  image: ele.image,
+                                                                  source: ele.source,
+                                                                  url: ele.url,
+                                                                  healthLabels: { ...ele.healthLabels },
+                                                                  yeild: ele.yeild,
+                                                                  dishname: dishname,
+                                                                  email: email,
+                                                                  name: name
                                                                 }
                                                             }
-
-                                                        }
-                                                            style={{ textDecoration: "none", color: "black", }}>
-
-                                                        <div>
+                                                      
+                                                          )
+                                                    }}>
+                                                        <span>
+                                                            Calories</span><br />
+                                                        <span className='heading'>{Math.round(ele.calories)}</span></div>              
+                                                                                       
+                                                        <div className="pointer" onClick={()=>{
+                                                            history.push(
+                                                                {
+                                                                  pathname: `${ele.label}/Nutrition`,
+                                                                    state: {
+                                                                      ingredients: { ...ele.ingredientLines },
+                                                                      nutrients: { ...ele.totalNutrients },
+                                                                      calories: ele.calories,
+                                                                      label: ele.label,
+                                                                      image: ele.image,
+                                                                      source: ele.source,
+                                                                      url: ele.url,
+                                                                      healthLabels: { ...ele.healthLabels },
+                                                                      yeild: ele.yeild,
+                                                                      dishname: dishname,
+                                                                      email: email,
+                                                                      name: name
+                                                                    }
+                                                                }
+                                                          
+                                                              )
+                                                        }}>
 
                                                             <span>Ingredients</span>
                                                             <br></br>
                                                             <span className='heading'>{ele.ingredientLines.length}</span>
                                                         </div>
-                                                    </NavLink>
+                                                    
 
                                                 </div>
                                                 <button type="button" className=" fav btn btn-primary  btn-warning " onClick={(e) => handleFavourites(e, ele)} >Add to favourites</button>

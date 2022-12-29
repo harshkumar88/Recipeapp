@@ -14,7 +14,7 @@ function App() {
       <Route  exact path='/Register' component={Register}/>
       <Route exact path='/Login' component={Login}/>
       <Route exact path="/Recipe" component={RecipePage}/>
-      <Route exact path="/*/Ingredients" component={Ingredients}/>
+      <Route exact path="/*/Nutrition" component={Ingredients}/>
       <Route exact path="/*/Favourites" component={Favourites}/>
     </Switch>
     </>

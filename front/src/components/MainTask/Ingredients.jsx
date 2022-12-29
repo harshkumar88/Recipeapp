@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom';
 import "./Ingredients.css"
 import SearchBar from './SearchBar';
 
-const Ingredients = (props) => {
+const Ingredients = () => {
+  const location=useLocation();
   const [data, setdata] = useState({});
   const [ingredients, setingridients] = useState([]);
   const [nutrients, setnutrients] = useState({});
@@ -16,7 +18,7 @@ const Ingredients = (props) => {
 
 
   useEffect(() => {
-    const data = props.location.aboutProps;
+    const data = location.state;
     setEmail(data.email)
     setName(data.name)
     setdata(data);
@@ -41,19 +43,19 @@ const Ingredients = (props) => {
     
       <div className='container-fluid w60 row bg-light  '>
 
-        <div className='col-lg-4  '><img src={data.image} className="img-fluid"/></div>
+        <div className='col-lg-4 '><img src={data.image} className="img-fluid"/></div>
       
           <div className='col-lg-6'>
             <h2>{data.label}</h2>
             <p>See full Recipe <a href={`${data.url}`}>{data.source}</a></p>
-            <button className='mt-3 mb-4'>Favourites</button>
+            
           </div>
         
 
       </div>
 
 
-      <div className='container-fluid row bg-light mt-2 w60'>
+      <div className='container-fluid row bg-light mt-2 w60 mb-3'>
 
       <div className="col-lg-6 sm-12">
         <h3>{ingredients.length} Ingredients</h3>

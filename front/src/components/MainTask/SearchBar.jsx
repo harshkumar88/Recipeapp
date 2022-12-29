@@ -9,6 +9,7 @@ import {AiOutlineSearch} from "react-icons/ai";
 import { useState } from 'react';
 
 const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
+
     const history = useHistory();
     const [checkSize,setSize]=useState(false);
     const [showSearch,setSearch]=useState(false);
@@ -16,7 +17,7 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
     window.onresize = function () {
         var viewport_width = window.innerWidth;
 
-        if (viewport_width <= 500) {
+        if (viewport_width <= 950) {
             setSize(true);
         }
         else {
@@ -29,7 +30,7 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
     useEffect(()=>{
         var viewport_width = window.innerWidth;
 
-        if (viewport_width <= 500) {
+        if (viewport_width <= 950) {
             setSize(true);
             setSearch(true)
         }
@@ -41,14 +42,15 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
     return (
         <div className=' w-100 down'>
             <div className='favourite container'>
-                <NavLink to={
-                    {
+                <AiFillHeart className='text-danger pointer' onClick={()=>{
+                    history.push({
                         pathname: `${name}/Favourites`,
-                        aboutProps: {
-                            email:email
+                        state: {  // location state
+                            email:email,
+                            name:name
                         }
-                    }
-                }><AiFillHeart className='text-danger'/></NavLink>
+                    })
+                }}/>
             </div>
              {showSearch==false?<div className='container-fluid w-100 fixednav text-center bg-light pb-2 p-3 ' style={{ borderBottom: "1px solid black",display:"flex" }}>
                 <div className='col-lg-3 mb-2 container col-xs-3'> <font face="Comic sans MS"  size={checkSize==true?"2":"5"} color="black" style={{ textDecoration: "underline" }}>Recipe

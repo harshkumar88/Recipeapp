@@ -117,6 +117,30 @@ for (let i of user.Data) {
     res.status(201).json({ message: "Success" });
 })
 
+router.post("/getFavourites",async(req,res)=>{
+       const {email}=req.body;
+    try{
+          const users=await User.find({});
+
+          const findUser=users.find((user)=>{
+            return user.email==email;
+          })
+        
+          if(findUser){
+                 
+            return res.status(201).json({message:findUser.Data});
+          }
+          else{
+                 return res.status(401).json({message:"user not found"});
+          }
+
+
+    }
+    catch(e){
+        return res.send("e");
+    }
+})
+
 router.post("/LoginData", async (req, res) => {
     const { username, email, password } = req.body;
 
