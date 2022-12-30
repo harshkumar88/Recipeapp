@@ -107,3 +107,7 @@
 .pointer{
   cursor: pointer;
 }
+.loader{
+  background-image: url("https://cdn.dribbble.com/users/255512/screenshots/2215917/animation.gif");
+   background-size: 100%;
+}

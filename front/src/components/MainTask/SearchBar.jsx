@@ -16,7 +16,7 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
 
     window.onresize = function () {
         var viewport_width = window.innerWidth;
-
+        
         if (viewport_width <= 950) {
             setSize(true);
         }
@@ -29,10 +29,9 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
 
     useEffect(()=>{
         var viewport_width = window.innerWidth;
-
+        
         if (viewport_width <= 950) {
             setSize(true);
-            setSearch(true)
         }
         else {
             setSize(false)
@@ -79,9 +78,9 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
                 <span>Hi {name} <img src='https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg' style={checkSize==true?{width:"20px"}:{width:"50px"}}></img></span>
                 </div>
 
-            </div>:""}
+            </div>:
 
-            {showSearch==true?<div  className='container-fluid w-100 fixednav text-center bg-light pb-2 p-3 ' style={{ borderBottom: "1px solid black" }}>
+            <div  className='container-fluid w-100 fixednav text-center bg-light pb-2 p-3 ' style={{ borderBottom: "1px solid black" }}>
                 <form action="#">
                         <div className='container inline w-75'><input type="text" value={dishname} onChange={(e) => {
                             setname(e.target.value)
@@ -97,7 +96,7 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
                             }) : fetchData(); e.preventDefault();setSearch(false)
                         }} className="form-control  Search "><AiOutlineSearch/></button></div>
                     </form>
-            </div>:""}
+            </div>}
         </div>
     )
 }

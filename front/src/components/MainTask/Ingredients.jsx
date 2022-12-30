@@ -15,6 +15,7 @@ const Ingredients = () => {
   const [fetchData,setFunc]=useState();
   const [email,setEmail]=useState();
   const [name,setName]=useState();
+  const [loader, setLoad] = useState(true);
 
 
   useEffect(() => {
@@ -43,7 +44,11 @@ const Ingredients = () => {
     
       <div className='container-fluid w60 row bg-light  '>
 
-        <div className='col-lg-4 '><img src={data.image} className="img-fluid"/></div>
+        <div className='col-lg-4 '>
+        <img src={data.image} className="img-fluid" onLoad={()=>setLoad(false)} style={loader==true?{display:"none"}:{display:"inline-block"}} />
+            <div className='w-100 card-border loader' style={loader==false?{display:"none"}:{display:"inline-block"}}> </div>
+        </div>
+
       
           <div className='col-lg-6'>
             <h2>{data.label}</h2>

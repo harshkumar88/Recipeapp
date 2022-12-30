@@ -16,6 +16,7 @@ const Favourites = () => {
   const [showSearch, setSearch] = useState(false);
   const [data,setData]=useState([]);
   const [checkcontent,setcontent]=useState(false);
+  const [loader, setLoad] = useState(true);
 
   window.onresize = function () {
     var viewport_width = window.innerWidth;
@@ -127,15 +128,23 @@ const Favourites = () => {
   return (
     <div className='h-100'>
       <div className='container-fluid w-100 fixednav  bg-light pb-2 p-3' style={{ borderBottom: "1px solid black", display: "flex" }}>
-        <div className='col-lg-4 mb-2 container col-xs-3 text-left'> <font face="Comic sans MS" size={checkSize == true ? "5" : "5"} color="black" style={{ textDecoration: "underline" }}>Recipe
-        </font><img src='https://cdn-icons-png.flaticon.com/512/1721/1721455.png' style={checkSize == true ? { width: "50px" } : { width: "50px" }} /></div>
+        <div className='col-lg-4 mb-2 container col-xs-3 text-left'> <font face="Comic sans MS" size={checkSize == true ? "3" : "5"} color="black" style={{ textDecoration: "underline" }}>Recipe
+        </font><img src='https://cdn-icons-png.flaticon.com/512/1721/1721455.png' style={checkSize == true ? { width: "30px" } : { width: "50px" }} /></div>
 
-        <div className='col-lg-4 container col-xs-1 text-center ' style={checkSize == true ? { fontSize: "25px" } : { fontSize: "25px" }}>
-         <span>Add More</span>
+        <div className='col-lg-4 container col-xs-1 text-center ' >
+        <h4  className="pointer btn " onClick={()=>{
+          history.push({
+            pathname: '/Recipe',
+            state: {  // location state
+                email:email,
+                name:name
+            }
+        })
+        }} style={checkSize == true ? { fontSize: "15px" } : { fontSize: "25px" }}>Add More</h4>
         </div>
 
-        <div className='col-lg-4 container col-xs-1 ' style={checkSize == true ? { fontSize: "25px" } : { fontSize: "25px" }}>
-          <span style={{float:"right"}}>Hi {name} <img src='https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg' style={checkSize == true ? { width: "50px" } : { width: "50px" }}></img></span>
+        <div className='col-lg-4 container col-xs-1 ' style={checkSize == true ? { fontSize: "18px" } : { fontSize: "30px" }}>
+          <span style={{float:"right"}}>Hi {name} <img src='https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg' style={checkSize == true ? { width: "20px" } : { width: "50px" }}></img></span>
         </div>
 
       </div>
@@ -160,9 +169,12 @@ const Favourites = () => {
                             {data.map((ele, id) => {
                                 return (
                                     <div key={id} className="mt-3 mb-5 text-center card-design bg-light onhover " style={checkw === true ? { width: "67%" } : { width: "270px" }}>
-                                        <div className='w-100' >
-                                            <img src={ele.image} alt="Food image" className='w-100 card-border' />
-                                            <div>
+                                    <div className='w-100' >
+                                    <img src={ele.image} alt="Food image" className='w-100 card-border' onLoad={()=>setLoad(false)} style={loader==true?{display:"none"}:{display:"inline-block"}} />
+                                                
+                                                <div className='w-100 card-border loader' style={loader==false?{display:"none"}:{display:"inline-block"}}>
+                                                    </div>
+                                    <div>
                                                 <a href={`${ele.url}`} target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFTC7YKP7zkKVpWrWY5Z3AU-TXuHumM3KeQ&usqp=CAU " className='mini-logo' /></a>
                                                 <p className='para'> {ele.label}</p>
                                                 <div className='flexcalo container'>
