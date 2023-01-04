@@ -7,7 +7,7 @@ const data=[
     {
         name:"Desert",
         img:"https://th.bing.com/th/id/OIP.gNR-wuDnPDioU5IgSfi8DwHaFj?pid=ImgDet&rs=1",
-        info:"One of the best types of foods for social gatherings or even relaxing on your own is pizza."
+        info:"One of the best types of foods for social gatherings."
     },
     {
         name:"Salad",
@@ -16,7 +16,7 @@ const data=[
     },
     {
         name:"Noodle",
-        img:"https://kirbiecravings.com/wp-content/uploads/2018/02/garlic-noodles-61.jpg",
+        img:"https://i.pinimg.com/originals/4d/0c/06/4d0c06c09d7fd2b474969cde535a94df.jpg",
         info:"One of the best types of foods for social gatherings or even relaxing on your own is pizza."
     },
     {

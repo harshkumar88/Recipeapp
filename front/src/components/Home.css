@@ -31,13 +31,14 @@ font-size: 4vw
 }
 
 .button1{
-    width:150px;
+    width:100px;
     text-align:left;
     border-radius: 50px;
-    border:0.1px solid rgb(198 205 213);
+    border:0.1px solid rgb(141, 154, 169);
     color:black;
     padding:auto;
     height:40px;
+    
     }
     .button1:hover{
       background-color:#FFD700;
@@ -53,7 +54,10 @@ font-size: 4vw
         padding:auto;
         height:40px;
     }
-    
+    .inline{
+        display: inline-block;
+        /* width: 100px; */
+    }
     .mybutton:hover{
         background-color:#FFD700;
         border:0.5px solid black;

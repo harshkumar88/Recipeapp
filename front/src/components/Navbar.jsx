@@ -13,32 +13,17 @@ const Navbar = () => {
                             </button>
                             <div className="collapse navbar-collapse ms-5" id="navbarSupportedContent">
                                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                    
                                     <li className="nav-item ms-5">
-                                        <NavLink  className="nav-link  anchor" aria-current="page" to="/shop">
-                                         Shop
-                                        </NavLink>
-                                       
-                                    </li>
-                                    <li className="nav-item ms-5">
-                                    <NavLink  className="nav-link  anchor" aria-current="page" to="/hotline">
-                                         Hotline
-                                        </NavLink>
-                                    </li>
-                                    <li className="nav-item ms-5">
-                                    <NavLink  className="nav-link  anchor" aria-current="page" to="/features">
-                                         Features
-                                        </NavLink>
-                                    </li>
-                                    <li className="nav-item ms-5">
-                                    <NavLink  className="nav-link  anchor" aria-current="page" to="/Recipe">
+                                    <NavLink  className="nav-link  anchor" aria-current="page" to="/Recipe" style={{fontStyle:"oblique",fontWeight:"bolder"}}>
                                         Recipe
                                         </NavLink>
                                     </li>
                                 </ul>
                                 <form className="d-flex me-5">
-                                    <button className="mx-4 button1" type="submit">
+                                    <button className="mx-4 button1 btn" type="submit">
                                         <NavLink className="nav-link  anchor" aria-current="page" to="/Login">Login</NavLink></button>
-                                    <button className="me-3 button1" type="submit"> <NavLink className="nav-link  anchor" aria-current="page" to="/Register">Register</NavLink></button>
+                                    <button className="me-3 button1 btn" type="submit"> <NavLink className="nav-link  anchor" aria-current="page" to="/Register">Register</NavLink></button>
                                 </form>
                             </div>
                         </div>
