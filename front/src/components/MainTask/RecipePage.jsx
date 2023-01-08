@@ -6,7 +6,7 @@ import "./Recipe.css"
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import SearchBar from './SearchBar';
-import LoadingIcons from 'react-loading-icons'
+// import LoadingIcons from 'react-loading-icons'
 
 const RecipePage = () => {
     const location = useLocation();

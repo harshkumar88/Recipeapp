@@ -3,7 +3,7 @@ import './Home.css'
 const Card1 = ({name,img,info}) => {
   return (
     <>
-      <div className='row  BorderRadius Bgcolor text-black container-fluid' >
+      <div className='row  BorderRadius Bgcolor text-black container-fluid mb-5' >
         <div className='col-lg-5 col-mid-12 BorderRadius container' >
           <img src={img} style={{ height: "100%", width: "100%" }} className="BorderRadius" />
         </div>

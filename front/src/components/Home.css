@@ -1,6 +1,11 @@
 .fontSize70{
 font-size: 4vw
 }
+body{
+    font-family: 'Noto Sans JP', sans-serif;
+    margin: 0px;
+    padding: 0px
+}
 
 .BorderRadius{
     border-radius: 20px;
@@ -54,12 +59,20 @@ font-size: 4vw
         padding:auto;
         height:40px;
     }
-    .inline{
-        display: inline-block;
-        /* width: 100px; */
-    }
-    .mybutton:hover{
-        background-color:#FFD700;
-        border:0.5px solid black;
-        /* border:0px */
-    }
+    
+   
+.flex-b{
+    display: flex;
+    flex-wrap: wrap;
+    
+   
+
+}
+.width-300{
+    width: 800px;
+}
+.img{
+    background-image: url("https://images.pexels.com/photos/2792186/pexels-photo-2792186.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
