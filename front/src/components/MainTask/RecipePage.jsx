@@ -20,6 +20,7 @@ const RecipePage = () => {
     const [name, setName] = useState();
     const [checkw, setWidth] = useState(false);
     const [loader, setLoad] = useState(true);
+    const [x,setx]=useState(false);
 
 
     const addFavourites = async (ele, v) => {
@@ -79,6 +80,14 @@ const RecipePage = () => {
         // console.log(res)
         const data = await res.json();
         const recipe = data.hits;
+       
+        if(recipe.length==0){
+            setx(true);
+            
+        }
+        else{
+            setx(false);
+        }
         // console.log(recipe)
 
         var recipeData = [];
@@ -124,6 +133,14 @@ const RecipePage = () => {
         // console.log(res)
         const data = await res.json();
         const recipe = data.hits;
+        if(recipe.length==0){
+            setx(true);
+           
+            
+        }
+        else{
+            setx(false);
+        }
         // console.log(recipe)
 
         var recipeData = [];
@@ -145,8 +162,11 @@ const RecipePage = () => {
             <div className='container-fluid body w-100' style={{ height: "100vh" }}>
                 <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="false" email={email} name={name} />
 
-                {
-                    shown == false ? <div className='container-fluid p-5 text-center topDist GetTop'>
+                { x==true?
+                <div className='container-fluid p-5 text-center topDist GetTop'>
+                <h1>Type a Valid Dish</h1>
+            </div>:
+                    shown == false ?  <div className='container-fluid p-5 text-center topDist GetTop'>
                         <h1>Type Recipe you want to search</h1>
                     </div> :
                         <div className='w-100 mx-auto  topDist mb-5' style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>

@@ -13,14 +13,10 @@ const Card1 = ({name,img,info}) => {
           </div>
 
           <div className="container">
-            <span style={{ fontSize: "8px" }}>{info}</span>
+            <span style={{ fontSize: "20px" }}>{info}</span>
           </div>
 
-          <div className="container" style={{ display: "flex", justifyContent: "space-between" }}>
-
-            <div className=""><span>Selling</span><p>!!</p> </div>   <div className=""><span>Selling</span><p>!!</p> </div>
-
-          </div>
+         
         </div>
 
       </div>

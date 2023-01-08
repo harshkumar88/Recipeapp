@@ -4,10 +4,14 @@ import { useState,useEffect } from 'react';
 import Card1 from "./Card1.jsx"
 import Card2 from './Card2.jsx'
 import data from './SmallApi.js'
+import {NavLink, useHistory} from "react-router-dom"
 const InfoSection = () => {
-
+const history=useHistory();
   const [check,set]=useState(false);
   const [checkWidth,setWidth]=useState(false);
+  const [name,setname]=useState();
+  const [email,setemail]=useState();
+  const [show,setit]=useState(false)
     useEffect(() => {
       var viewport_width = window.innerWidth;
   
@@ -24,7 +28,18 @@ const InfoSection = () => {
     else {
         setWidth(false)
     }
-    })
+
+    const val=sessionStorage.getItem("login");
+    if(val=="true"){
+       const email=sessionStorage.getItem("email");
+       const name=sessionStorage.getItem("name");
+       setname(name);
+       setemail(email)
+       setit(true)
+      
+    }
+
+    },[])
       window.onresize = function () {
         var viewport_width = window.innerWidth;
         if (viewport_width <= 800) {
@@ -50,6 +65,16 @@ const InfoSection = () => {
         info:"Citrus Salad with Berries"
     });
 
+    const GOTORecipePage=()=>{
+         history.push({
+                pathname: '/Recipe',
+                state: {  // location state
+                    email:email,
+                    name:name
+                }
+            })
+    }
+
   return (
     <div>
     <div className='flex-b container-fluid mt-3'>
@@ -60,8 +85,9 @@ const InfoSection = () => {
       </h1>
       <p style={check==false?{fontSize:"1.7vw"}:{fontSize:"4vw"}}>Want to learn cooking but confused how to start?</p>
       
-        <button class="btn btn-lg btn-success mx-2" type="submit">Login</button>
-        <button class="btn btn-lg btn-outline-success mx-2" type="submit">Explore</button>
+       {show==false? <NavLink to="/Login">  <button class="btn btn-lg btn-success mx-2" type="submit">Login</button></NavLink> :""}
+         {show==false?<button class="btn btn-lg btn-outline-success mx-2" type="submit "  onClick={()=>alert("login First")}>Explore</button>
+        : <button class="btn btn-lg btn-success mx-2" type="submit" onClick={GOTORecipePage}>Explore</button>}
       </div>
     </div>
 

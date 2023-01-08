@@ -128,8 +128,8 @@ const Favourites = () => {
   return (
     <div className='h-100'>
       <div className='container-fluid w-100 fixednav  bg-light pb-2 p-3' style={{ borderBottom: "1px solid black", display: "flex" }}>
-        <div className='col-lg-4 mb-2 container col-xs-3 text-left'> <font face="Comic sans MS" size={checkSize == true ? "3" : "5"} color="black" style={{ textDecoration: "underline" }}>Recipe
-        </font><img src='https://cdn-icons-png.flaticon.com/512/1721/1721455.png' style={checkSize == true ? { width: "30px" } : { width: "50px" }} /></div>
+        <div className='col-lg-4 mb-2 container col-xs-3 text-left' style={{cursor:"pointer"}}> <NavLink to="/"><font face="Comic sans MS" size={checkSize == true ? "3" : "5"} color="black" style={{ textDecoration: "underline" }}>Recipe
+        </font><img src='https://cdn-icons-png.flaticon.com/512/1721/1721455.png' style={checkSize == true ? { width: "30px" } : { width: "50px" }} /></NavLink></div>
 
         <div className='col-lg-4 container col-xs-1 text-center ' >
         <h4  className="pointer btn " onClick={()=>{

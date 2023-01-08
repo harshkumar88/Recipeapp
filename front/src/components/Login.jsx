@@ -3,7 +3,6 @@ import {useHistory,NavLink } from 'react-router-dom'
 import './Register.css'
 const Login = () => {
 
-    
     const [w,inc]=useState("40%");
 
     useEffect(() => {
@@ -43,14 +42,20 @@ const Login = () => {
          else{
              alert("Successfull Login")
              setData({username:"",email:"",password:""})
+
+             sessionStorage.setItem("login",true);
+             sessionStorage.setItem("email",email);
+             sessionStorage.setItem("name",username);
              
-             history.push({
-                pathname: '/Recipe',
-                state: {  // location state
-                    email:email,
-                    name:username
-                }
-            })
+            //  history.push({
+            //     pathname: '/Recipe',
+            //     state: {  // location state
+            //         email:email,
+            //         name:username
+            //     }
+            // })
+
+            history.push("/");
          }
      
     

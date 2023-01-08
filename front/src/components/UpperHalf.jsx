@@ -1,29 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Home.css'
 import Navbar from './Navbar'
 import InfoSection from './InfoSection'
-const UpperHalf = () => {
+import { useState } from 'react'
+import {NavLink} from'react-router-dom'
+import { UilUser } from '@iconscout/react-unicons'
+const UpperHalf = (props) => {
+  const [name,setname]=useState();
+  useEffect(()=>{
+    const val=sessionStorage.getItem("login");
+    if(val=="true"){
+       const email=sessionStorage.getItem("email");
+       const name=sessionStorage.getItem("name");
+       setname(name);
+      
+    }
+},[])
     return (
-        <div >
-        <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
-          <div class="container-fluid ">
-            <a class="navbar-brand " href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active " aria-current="page" href="#">Home</a>
-                </li>
-              </ul>
-              <form class="d-flex">
-                <button class="btn btn-success mx-2" type="submit">Login</button>
-                <button class="btn btn-success me-2" type="submit">Register</button>
-              </form>
+        <div style={{display:"flex"}} className='pt-3 container-fluid'>
+        
+        <div className='w-50' style={{cursor:"pointer",marginLeft:"4%"}} ><NavLink to="/"> <font face="Comic sans MS"  size='5' color="black" style={{ textDecoration: "underline" }}>Recipe
+                </font><img src='https://cdn-icons-png.flaticon.com/512/1721/1721455.png' style={{width:"50px"}} /></NavLink></div>
+                <div className=' w-50  text-center' style={{marginLeft:"25%"}}>
+ <h3 style={{textTransform:"capitalize"}}>{name}<UilUser></UilUser></h3>
             </div>
-          </div>
-        </nav>
+               
       </div>
     )
 }
