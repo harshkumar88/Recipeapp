@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useLocation,NavLink, useHistory } from 'react-router-dom'
 import './Recipe.css'
+import { UilUser } from '@iconscout/react-unicons'
 
 const Favourites = () => {
 
@@ -131,8 +132,8 @@ const Favourites = () => {
         <div className='col-lg-4 mb-2 container col-xs-3 text-left' style={{cursor:"pointer"}}> <NavLink to="/"><font face="Comic sans MS" size={checkSize == true ? "3" : "5"} color="black" style={{ textDecoration: "underline" }}>Recipe
         </font><img src='https://cdn-icons-png.flaticon.com/512/1721/1721455.png' style={checkSize == true ? { width: "30px" } : { width: "50px" }} /></NavLink></div>
 
-        <div className='col-lg-4 container col-xs-1 text-center ' >
-        <h4  className="pointer btn " onClick={()=>{
+        {checkcontent==false?<div className='col-lg-4 container col-xs-1 text-center ' >
+        <h4  className="pointer btn btn-outline-success" onClick={()=>{
           history.push({
             pathname: '/Recipe',
             state: {  // location state
@@ -141,10 +142,10 @@ const Favourites = () => {
             }
         })
         }} style={checkSize == true ? { fontSize: "15px" } : { fontSize: "25px" }}>Add More</h4>
-        </div>
+        </div>:""}
 
         <div className='col-lg-4 container col-xs-1 ' style={checkSize == true ? { fontSize: "18px" } : { fontSize: "30px" }}>
-          <span style={{float:"right"}}>Hi {name} <img src='https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg' style={checkSize == true ? { width: "20px" } : { width: "50px" }}></img></span>
+          <span style={{float:"right"}}>Hi {name} <UilUser></UilUser></span>
         </div>
 
       </div>
@@ -154,7 +155,7 @@ const Favourites = () => {
              {checkcontent==true?
               <div className='mt-5'>
                 <h1>Add Some Recipes</h1>
-                <h4  className="pointer btn btn-primary" onClick={()=>{
+                <h4  className="pointer btn btn-outline-success" onClick={()=>{
                   history.push({
                     pathname: '/Recipe',
                     state: {  // location state
@@ -164,11 +165,10 @@ const Favourites = () => {
                 })
                 }}>Click Here</h4>
               </div>
-
              :<>
-                            {data.map((ele, id) => {
+                        {data.map((ele, id) => {
                                 return (
-                                    <div key={id} className="mt-3 mb-5 text-center card-design bg-light onhover " style={checkw === true ? { width: "67%" } : { width: "270px" }}>
+                                    <div key={id} className="mt-4 mb-5 text-center card-design bg-light onhover " style={checkw === true ? { width: "67%" } : { width: "270px" }}>
                                     <div className='w-100' >
                                     <img src={ele.image} alt="Food image" className='w-100 card-border' onLoad={()=>setLoad(false)} style={loader==true?{display:"none"}:{display:"inline-block"}} />
                                                 

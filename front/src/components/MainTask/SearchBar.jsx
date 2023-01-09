@@ -7,6 +7,7 @@ import { NavLink, useHistory } from 'react-router-dom'
 import { AiFillHeart } from "react-icons/ai";
 import {AiOutlineSearch} from "react-icons/ai";
 import { useState } from 'react';
+import { UilUser } from '@iconscout/react-unicons'
 
 const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
 
@@ -57,10 +58,10 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
                 <div className='container col-lg-6 col-xs-4'>
                 {checkSize==true?<AiOutlineSearch onClick={()=>setSearch(true)}/>:
                     <form action="#">
-                        <div className='container inline w-75'><input type="text"  value={dishname} onChange={(e) => {
+                        <div className='container inline w-75 shadow-none'><input type="text"  value={dishname} onChange={(e) => {
                             setname(e.target.value)
-                        }} className="form-control w-100 mx-auto " /></div>
-                        <div className='container inline small relative'><button type="submit" onClick={(e) => {
+                        }} className="form-control w-100 mx-auto shadow-none " /></div>
+                        <div className='container inline small relative '><button type="submit" onClick={(e) => {
                             check == "true" ? history.push({
                                 pathname: '/Recipe',
                                 state: {  // location state
@@ -75,7 +76,7 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
                 </div>
 
                 <div className='col-lg-3 container col-xs-1' style={checkSize==true?{fontSize:"18px"}:{fontSize:"25px"}}>
-                <span>Hi {name} <img src='https://as2.ftcdn.net/v2/jpg/02/29/75/83/1000_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg' style={checkSize==true?{width:"20px"}:{width:"50px"}}></img></span>
+                <span>Hi {name}<UilUser></UilUser></span>
                 </div>
 
             </div>:
@@ -84,7 +85,7 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
                 <form action="#">
                         <div className='container inline w-75'><input type="text" value={dishname} onChange={(e) => {
                             setname(e.target.value)
-                        }} className="form-control w-100 mx-auto" /></div>
+                        }} className="form-control w-100 mx-auto shadow-none" /></div>
                         <div className='container inline small relative'><button type="submit" onClick={(e) => {
                             check == "true" ? history.push({
                                 pathname: '/Recipe',

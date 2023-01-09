@@ -16,6 +16,7 @@ const Ingredients = () => {
   const [email,setEmail]=useState();
   const [name,setName]=useState();
   const [loader, setLoad] = useState(true);
+  const [size,setSize]=useState(false);
 
 
   useEffect(() => {
@@ -34,7 +35,28 @@ const Ingredients = () => {
     setname(data.dishname);
     setFunc(data.fetchData)
     // console.log(data.fetchData)
+
+    var viewport_width = window.innerWidth;
+
+    if (viewport_width <= 550) {
+      setSize(true);
+    }
+    else {
+      setSize(false)
+    }
+
   }, [])
+
+  window.onresize = function () {
+    var viewport_width = window.innerWidth;
+    if (viewport_width <= 550) {
+      setSize(true);
+    }
+    else {
+      setSize(false)
+    }
+
+  }
 
   return (
 
@@ -42,7 +64,7 @@ const Ingredients = () => {
     <SearchBar dishname={dishname} setname={setname} fetchData={fetchData} check="true" email={email} name={name}/>
     <div className='container-fluid topDist GetTop mt-3'>
     
-      <div className='container-fluid w60 row bg-light  '>
+      <div className={size==false?'container-fluid w60 row bg-light mx-auto ':"container-fluid w90 row bg-light mx-auto "}>
 
         <div className='col-lg-4 '>
         <img src={data.image} className="img-fluid" onLoad={()=>setLoad(false)} style={loader==true?{display:"none"}:{display:"inline-block"}} />
@@ -60,7 +82,7 @@ const Ingredients = () => {
       </div>
 
 
-      <div className='container-fluid row bg-light mt-2 w60 mb-3'>
+      <div className={size==false?'container-fluid row bg-light mt-2 w60 mb-3 mx-auto':"container-fluid row bg-light mt-2 w90 mb-3 mx-auto"}>
 
       <div className="col-lg-6 sm-12">
         <h3>{ingredients.length} Ingredients</h3>

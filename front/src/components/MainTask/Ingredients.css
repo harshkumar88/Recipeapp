@@ -13,8 +13,11 @@
  }
  .w60{
    width:60%;
-   margin-left: 20%;
+   
  }
+ .w90{
+  width:90%;
+}
  .margin-right{
     display: inline-block;
     margin-right: 10px;
