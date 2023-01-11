@@ -54,7 +54,7 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
             </div>
              {showSearch==false?<div className='container-fluid w-100 fixednav text-center bg-light pb-2 p-3 ' style={{ borderBottom: "1px solid black",display:"flex" }}>
                 <div className='col-lg-3 mb-2 container col-xs-3' style={{cursor:"pointer"}}><NavLink to="/"> {checkSize==false?<font face="Comic sans MS"  size={checkSize==true?"5":"5"} color="black"> Recipe
-                </font>:""}<img src='https://cdn-icons-png.flaticon.com/512/1721/1721455.png' style={checkSize==true?{width:"20px",transform:"scale(2.3)"}:{width:"50px"}} /></NavLink></div>
+                </font>:""}<img src='https://cdn-icons-png.flaticon.com/512/1721/1721455.png' style={checkSize==true?{width:"20px",transform:"scale(2.3)"}:{width:"50px",transform:"scale(1)"}} /></NavLink></div>
                 <div className='container col-lg-6 col-xs-4'>
                 {checkSize==true?<AiOutlineSearch onClick={()=>setSearch(true)}   style={checkSize==true?{transform:"scale(3)"}:{transform:"scale(1)"}}/>:
                     <form action="#">
