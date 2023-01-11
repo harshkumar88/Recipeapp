@@ -53,10 +53,10 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
                 }}/>
             </div>
              {showSearch==false?<div className='container-fluid w-100 fixednav text-center bg-light pb-2 p-3 ' style={{ borderBottom: "1px solid black",display:"flex" }}>
-                <div className='col-lg-3 mb-2 container col-xs-3' style={{cursor:"pointer"}}><NavLink to="/"> <font face="Comic sans MS"  size={checkSize==true?"2":"5"} color="black" style={{ textDecoration: "underline" }}>Recipe
-                </font><img src='https://cdn-icons-png.flaticon.com/512/1721/1721455.png' style={checkSize==true?{width:"20px"}:{width:"50px"}} /></NavLink></div>
+                <div className='col-lg-3 mb-2 container col-xs-3' style={{cursor:"pointer"}}><NavLink to="/"> {checkSize==false?<font face="Comic sans MS"  size={checkSize==true?"5":"5"} color="black"> Recipe
+                </font>:""}<img src='https://cdn-icons-png.flaticon.com/512/1721/1721455.png' style={checkSize==true?{width:"20px",transform:"scale(2.3)"}:{width:"50px"}} /></NavLink></div>
                 <div className='container col-lg-6 col-xs-4'>
-                {checkSize==true?<AiOutlineSearch onClick={()=>setSearch(true)}/>:
+                {checkSize==true?<AiOutlineSearch onClick={()=>setSearch(true)}   style={checkSize==true?{transform:"scale(3)"}:{transform:"scale(1)"}}/>:
                     <form action="#">
                         <div className='container inline w-75 shadow-none'><input type="text"  value={dishname} onChange={(e) => {
                             setname(e.target.value)
@@ -75,8 +75,8 @@ const SearchBar = ({ dishname, setname, fetchData, check,email,name }) => {
                     }
                 </div>
 
-                <div className='col-lg-3 container col-xs-1' style={checkSize==true?{fontSize:"18px"}:{fontSize:"25px"}}>
-                <span>Hi {name}<UilUser></UilUser></span>
+                <div className='col-lg-3 container col-xs-1' style={checkSize==true?{fontSize:"18px",transform:"scale(1.1)"}:{fontSize:"25px"}}>
+                <span>Hi {name} <UilUser></UilUser></span>
                 </div>
 
             </div>:
